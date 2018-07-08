@@ -1,0 +1,25 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks: null
+    tasks:
+        phpcsfixer2:
+            allow_risky: ~
+            cache_file: ~
+            config: ~
+            rules: []
+            using_cache: ~
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
+        yamllint:
+            ignore_patterns: []
+            object_support: false
+            exception_on_invalid_type: false
+            parse_constant: false
+            parse_custom_tags: false
+        phplint:
+            exclude: []
+            jobs: ~
+            triggered_by: ['php', 'phtml', 'php3', 'php4', 'php5']

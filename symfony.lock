@@ -1,4 +1,19 @@
 {
+    "composer/ca-bundle": {
+        "version": "1.1.1"
+    },
+    "composer/composer": {
+        "version": "1.6.5"
+    },
+    "composer/semver": {
+        "version": "1.4.2"
+    },
+    "composer/spdx-licenses": {
+        "version": "1.4.0"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.1.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -71,8 +86,26 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "81dee417d2cc60cd1c9d6208dff2ec22a1103e93"
+        }
+    },
+    "gitonomy/gitlib": {
+        "version": "v1.0.4"
+    },
+    "jakub-onderka/php-parallel-lint": {
+        "version": "v1.0.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "justinrainbow/json-schema": {
+        "version": "5.2.7"
     },
     "monolog/monolog": {
         "version": "1.23.0"
@@ -83,6 +116,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },
+    "php-cs-fixer/diff": {
+        "version": "v1.3.0"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
@@ -91,6 +127,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phpro/grumphp": {
+        "version": "v0.14.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -105,6 +144,15 @@
         "version": "1.0.2"
     },
     "psr/simple-cache": {
+        "version": "1.0.1"
+    },
+    "seld/cli-prompt": {
+        "version": "1.0.3"
+    },
+    "seld/jsonlint": {
+        "version": "1.7.1"
+    },
+    "seld/phar-utils": {
         "version": "1.0.1"
     },
     "sensio/framework-extra-bundle": {
