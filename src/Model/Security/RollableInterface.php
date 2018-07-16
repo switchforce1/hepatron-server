@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\security;
+namespace App\Model\Security;
 
 /**
  * Represente les class auxquels on associes des roles
