@@ -12,10 +12,9 @@ Encore
 
     // uncomment to define the assets of the project
      .addEntry('js/app', './assets/pages/layout.js')
-     .addEntry('js/template', './assets/plugins/plugins.js')
+     // .addEntry('js/template', './assets/plugins/plugins.js')
      //.addEntry('plugins', './assets/plugins/**')
      .addStyleEntry('css/app', './assets/pages/layout.scss')
-     .addStyleEntry('css/template', './assets/plugins/plugins.css')
      // .addStyleEntry('css/adminLTE', './assets/plugins/extra_layout/css/AdminLTE.css')
 
     // uncomment if you use Sass/SCSS files

@@ -7,19 +7,23 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/js/template.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('build/css/app.css') }}">#}
         <!-- Bootstrap 3.3.7 -->
         {#<link rel="stylesheet" href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('copy/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
         <!-- Font Awesome -->
         {#<link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('copy/plugins/font-awesome/css/font-awesome.min.css') }}">
         <!-- Ionicons -->
         {#<link rel="stylesheet" href="{{ asset('plugins/Ionicons/css/ionicons.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('copy/plugins/Ionicons/css/ionicons.min.css') }}">
         <!-- Theme style -->
         {#<link rel="stylesheet" href="{{ asset('plugins/extra_layout/css/AdminLTE.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('copy/extra_layout/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         {#<link rel="stylesheet" href="{{ asset('plugins/extra_layout/css/skins/_all-skins.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('copy/extra_layout/css/skins/_all-skins.min.css') }}">
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <!-- demo style -->
@@ -82,365 +86,51 @@
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    {% block body %}{% endblock %}
     <div class="wrapper">
 
-        <header class="main-header">
-            <!-- Logo -->
-            <a href="../../index2.html" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>A</b>LT</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
-            </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
+        {% block header %}
+            {% include 'block/_default_banner.html.twig' %}
+        {% endblock %}
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            {% block menu  %}
+                {% include('block/_default_menu.html.twig') %}
+            {% endblock %}
+            <!-- /.sidebar -->
+        </aside>
 
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li><!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    AdminLTE Design Team
-                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Developers
-                                                    <small><i class="fa fa-clock-o"></i> Today</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Sales Department
-                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Reviewers
-                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
-                        <!-- Notifications: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                                page and may cause design problems
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-red"></i> 5 new members joined
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user text-red"></i> You changed your username
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
-                        <!-- Tasks: style can be found in dropdown.less -->
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li><!-- Task item -->
-                                            <a href="#">
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                        <li><!-- Task item -->
-                                            <a href="#">
-                                                <h3>
-                                                    Create a nice theme
-                                                    <small class="pull-right">40%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">40% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                        <li><!-- Task item -->
-                                            <a href="#">
-                                                <h3>
-                                                    Some task I need to do
-                                                    <small class="pull-right">60%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">60% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                        <li><!-- Task item -->
-                                            <a href="#">
-                                                <h3>
-                                                    Make beautiful transitions
-                                                    <small class="pull-right">80%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">80% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-
-        <!-- Content Wrapper. Contains pages content -->
+        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Icons
-                    <small>a set of beautiful icons</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">UI</a></li>
-                    <li class="active">Icons</li>
-                </ol>
+                {% block page_title %}
+                    <h1>
+                        Icons
+                        <small>a set of beautiful icons</small>
+                    </h1>
+                {% endblock %}
+                {% block breadcrumb %}
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#">UI</a></li>
+                        <li class="active">Icons</li>
+                    </ol>
+                {% endblock %}
             </section>
 
             <!-- Main content -->
             <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#fa-icons" data-toggle="tab">Font Awesome</a></li>
-                                <li><a href="#glyphicons" data-toggle="tab">Glyphicons</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <!-- Font Awesome Icons -->
-                                <div class="tab-pane active" id="fa-icons">
-
-                                    <section id="medical">
-                                        <h4 class="page-header">Medical Icons</h4>
-
-                                        <div class="row">
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-ambulance"></i> fa-ambulance</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-h-square"></i> fa-h-square</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-heart"></i> fa-heart</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-heart-o"></i> fa-heart-o</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-heartbeat"></i> fa-heartbeat</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-hospital-o"></i> fa-hospital-o</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-medkit"></i> fa-medkit</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus-square"></i> fa-plus-square</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-stethoscope"></i> fa-stethoscope</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-user-md"></i> fa-user-md</div>
-                                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-wheelchair"></i> fa-wheelchair</div>
-                                        </div>
-                                    </section>
-                                </div>
-                                <!-- /#fa-icons -->
-
-                                <!-- glyphicons-->
-                                <div class="tab-pane" id="glyphicons">
-                                    <ul class="bs-glyphicons">
-                                        <li>
-                                            <span class="glyphicon glyphicon-asterisk"></span>
-                                            <span class="glyphicon-class">glyphicon glyphicon-asterisk</span>
-                                        </li>
-                                        <li>
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            <span class="glyphicon-class">glyphicon glyphicon-plus</span>
-                                        </li>
-                                        <li>
-                                            <span class="glyphicon glyphicon-euro"></span>
-                                            <span class="glyphicon-class">glyphicon glyphicon-euro</span>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                                <!-- /#ion-icons -->
-
-                            </div>
-                            <!-- /.tab-content -->
-                        </div>
-                        <!-- /.nav-tabs-custom -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                {% block content %}{% endblock %}
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
-            </div>
-            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-            reserved.
-        </footer>
+        {% include 'block/_default_footer.html.twig' %}
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-        </aside>
+        {% block parameter_menu %}
+            {% include 'block/_default_parameter_menu.html.twig' %}
+        {% endblock %}
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
@@ -450,18 +140,23 @@
 
     {% block javascripts %}
         <script src="{{ asset('build/js/app.js') }}"></script>
-        <script src="{{ asset('build/js/template.js') }}"></script>
+        {#<script src="{{ asset('build/js/template.js') }}"></script>#}
 
         <!-- jQuery 3 -->
         {#<script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>#}
+        <script src="{{ asset('copy/plugins/jquery/dist/jquery.min.js') }}"></script>
         <!-- Bootstrap 3.3.7 -->
         {#<script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>#}
+        <script src="{{ asset('copy/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <!-- FastClick -->
         {#<script src="{{ asset('plugins/fastclick/lib/fastclick.js') }}"></script>#}
+        <script src="{{ asset('copy/plugins/fastclick/lib/fastclick.js') }}"></script>
         <!-- AdminLTE App -->
         {#<script src="{{ asset('plugins/extra_leyout/js/adminlte.min.js') }}"></script>#}
+        <script src="{{ asset('copy/extra_layout/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         {#<script src="{{ asset('plugins/js/demo.js') }}"></script>#}
+        <script src="{{ asset('copy/extra_layout/js/demo.js') }}"></script>
     {% endblock %}
 </body>
 </html>
