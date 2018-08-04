@@ -21,14 +21,14 @@ class ParticularAccesse
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * Many ParticularAccesses have Many Roles.
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="particularAccesses")
      * @ORM\JoinTable(name="particular_accesses_roles")
      */
-    private $roles;
+    protected $roles;
 
     /**
      * ParticularAccesse constructor.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity\Security;
+namespace App\Entity\Security;
 
 use App\Entity\Security\ParticularAccesse;
 use App\Entity\Security\Profil;
@@ -18,19 +18,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser
 {
     //put your code here
-    
+
     /**
-     * @var int 
-     * @ORM\Id
-     * @ORM\Column(name='id')
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
      * @var Profil
      *
-     * @ManyToOne(targetEntity="Profil")
-     * @JoinColumn(name="profil_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Profil")
+     * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
      */
     protected $profil;
 
@@ -41,7 +41,7 @@ class User extends BaseUser
      * @ORM\OneToOne(targetEntity="ParticularAccesse")
      * @ORM\JoinColumn(name="particular_access_id", referencedColumnName="id")
      */
-    private $paticularAccesse;
+    protected $paticularAccesse;
     
     /**
      * The constructor
@@ -104,7 +104,4 @@ class User extends BaseUser
         $this->paticularAccesse = $paticularAccesse;
         return $this;
     }
-
-
-
 }

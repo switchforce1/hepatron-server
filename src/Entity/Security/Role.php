@@ -26,35 +26,35 @@ class Role
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    protected $label;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $code;
+    protected $code;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    protected $description;
     
     /**
      * @var Profil
      * @ORM\ManyToOne(targetEntity="Profil", inversedBy="roles")
      * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
      */
-    private $profil;
+    protected $profil;
 
     /**
      * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="ParticularAccesse", mappedBy="roles")
      */
-    private $particularAccesses;
+    protected $particularAccesses;
     
     /**
      * The constructor

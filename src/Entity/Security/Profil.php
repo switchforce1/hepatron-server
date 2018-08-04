@@ -16,28 +16,28 @@ class Profil
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    protected $label;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $code;
+    protected $code;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    protected $description;
     
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Role", mappedBy="profil")
      */
-    private $roles;
+    protected $roles;
 
     /**
      * Profil constructor.
