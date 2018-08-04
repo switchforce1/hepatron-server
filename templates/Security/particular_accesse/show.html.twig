@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParticularAccesse{% endblock %}
+
+{% block body %}
+    <h1>ParticularAccesse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ particular_accesse.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('security_particular_accesse_index') }}">back to list</a>
+
+    <a href="{{ path('security_particular_accesse_edit', {'id': particular_accesse.id}) }}">edit</a>
+
+    {{ include('security_particular_accesse/_delete_form.html.twig') }}
+{% endblock %}

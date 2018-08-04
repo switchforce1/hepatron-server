@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ParticularAccesse{% endblock %}
+
+{% block body %}
+    <h1>Create new ParticularAccesse</h1>
+
+    {{ include('security_particular_accesse/_form.html.twig') }}
+
+    <a href="{{ path('security_particular_accesse_index') }}">back to list</a>
+{% endblock %}

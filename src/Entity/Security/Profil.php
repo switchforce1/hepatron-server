@@ -2,13 +2,14 @@
 
 namespace App\Entity\Security;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Model\security\RollableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Security\ProfilRepository")
  */
-class Profil implements RollableInterface
+class Profil
 {
     /**
      * @ORM\Id()
@@ -37,6 +38,15 @@ class Profil implements RollableInterface
      * @ORM\OneToMany(targetEntity="Role", mappedBy="profil")
      */
     private $roles;
+
+    /**
+     * Profil constructor.
+     */
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
+
 
     /**
      * 

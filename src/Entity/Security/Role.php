@@ -2,13 +2,25 @@
 
 namespace App\Entity\Security;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Entity\Security\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Security\RoleRepository")
  */
 class Role
 {
+    //Roles constantes
+    const CODE_DEFAULT = 'ROLE_USER';
+    const CODE_SUBSCRIBER = 'ROLE_SUBSCRIBER';
+    const CODE_TAILOR = 'ROLE_TAILOR';
+    const CODE_MANIKIN = 'ROLE_MANIKIN';
+    const CODE_SELLER = 'ROLE_SELLER';
+    const CODE_CARRIER = 'ROLE_CARRIER';
+    const CODE_ADMIN = 'ROLE_ADMIN';
+    const CODE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -33,24 +45,23 @@ class Role
     
     /**
      * @var Profil
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="roles")
-     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
-     */
-    private $utilisateur;
-    
-    /**
-     * @var Profil
      * @ORM\ManyToOne(targetEntity="Profil", inversedBy="roles")
      * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
      */
     private $profil;
+
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="ParticularAccesse", mappedBy="roles")
+     */
+    private $particularAccesses;
     
     /**
      * The constructor
      */
     public function __construct()
     {
-        
+        $this->particularAccesses = new ArrayCollection();
     }
     
     /**
