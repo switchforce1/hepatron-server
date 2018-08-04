@@ -41,7 +41,7 @@ class User extends BaseUser
      * @ORM\OneToOne(targetEntity="ParticularAccesse")
      * @ORM\JoinColumn(name="particular_access_id", referencedColumnName="id")
      */
-    private $paticularAccess;
+    private $paticularAccesse;
     
     /**
      * The constructor
@@ -90,18 +90,18 @@ class User extends BaseUser
     /**
      * @return ParticularAccesse
      */
-    public function getPaticularAccess(): ParticularAccesse
+    public function getPaticularAccesse(): ParticularAccesse
     {
-        return $this->paticularAccess;
+        return $this->paticularAccesse;
     }
 
     /**
-     * @param ParticularAccesse $paticularAccess
+     * @param ParticularAccesse $paticularAccesse
      * @return User
      */
-    public function setPaticularAccess(ParticularAccesse $paticularAccess): User
+    public function setPaticularAccesse(ParticularAccesse $paticularAccesse): User
     {
-        $this->paticularAccess = $paticularAccess;
+        $this->paticularAccesse = $paticularAccesse;
         return $this;
     }
 
