@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity(repositoryClass="App\Repository\Admin\MannequinRepository")
  */
-class Mannequin extends Member
+class Mannequin extends Subscriber
 {
 
     /**

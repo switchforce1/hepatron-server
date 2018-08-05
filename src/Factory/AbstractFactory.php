@@ -8,8 +8,11 @@
 
 namespace App\Factory;
 
-
-class AbstractFactory
+/**
+ * Class AbstractFactory
+ * @package App\Factory
+ */
+abstract class AbstractFactory
 {
 
 }

@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Dadja
  * @ORM\Entity(repositoryClass="App\Repository\Admin\TailorRepository")
  */
-class Tailor extends Member
+class Tailor extends Subscriber
 {
     /**
      * @ORM\Id()

@@ -33,12 +33,6 @@ class BaseFile
     protected $description;
 
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="App\Entity\Admin")
-     */
-    protected $user;
-
-    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -46,7 +40,7 @@ class BaseFile
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updateDate;
 
@@ -58,7 +52,7 @@ class BaseFile
 
     /**
      * @var array
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     protected $detail;
 }

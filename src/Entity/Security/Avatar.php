@@ -8,14 +8,16 @@
 
 namespace App\Entity\Security;
 
+use App\Entity\Admin\BaseFile;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Admin\Picture;
 
 /**
  * Class Avatar
  * @package App\Entity\Security
+ * @ORM\Entity(repositoryClass="App\Repository\Security\AvatarRepository")
  */
-class Avatar extends Picture
+class Avatar extends BaseFile
 {
     /**
      * @ORM\Id()
@@ -23,4 +25,10 @@ class Avatar extends Picture
      * @ORM\Column(type="integer")
      */
     protected $id;
+
+    /**
+     * @var User
+     * @ORM\OneToOne(targetEntity="App\Entity\Security\User")
+     */
+    protected $user;
 }
