@@ -20,7 +20,7 @@ class TailorController extends Controller
      */
     public function index(TailorRepository $tailorRepository): Response
     {
-        return $this->render('admin_tailor/index.html.twig', ['tailors' => $tailorRepository->findAll()]);
+        return $this->render('Admin/tailor/index.html.twig', ['tailors' => $tailorRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class TailorController extends Controller
             return $this->redirectToRoute('admin_tailor_index');
         }
 
-        return $this->render('admin_tailor/new.html.twig', [
+        return $this->render('Admin/tailor/new.html.twig', [
             'tailor' => $tailor,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class TailorController extends Controller
      */
     public function show(Tailor $tailor): Response
     {
-        return $this->render('admin_tailor/show.html.twig', ['tailor' => $tailor]);
+        return $this->render('Admin/tailor/show.html.twig', ['tailor' => $tailor]);
     }
 
     /**
@@ -68,7 +68,7 @@ class TailorController extends Controller
             return $this->redirectToRoute('admin_tailor_edit', ['id' => $tailor->getId()]);
         }
 
-        return $this->render('admin_tailor/edit.html.twig', [
+        return $this->render('Admin/tailor/edit.html.twig', [
             'tailor' => $tailor,
             'form' => $form->createView(),
         ]);

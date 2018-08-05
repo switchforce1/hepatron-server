@@ -61,17 +61,16 @@ class Profil
      * 
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
     /**
-     * 
-     * @param string $label
-     * @return \self3
+     * @param null|string $label
+     * @return Profil
      */
-    public function setLabel(string $label): self
+    public function setLabel(?string $label): self
     {
         $this->label = $label;
 
@@ -82,7 +81,7 @@ class Profil
      * 
      * @return string
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -92,7 +91,7 @@ class Profil
      * @param string $code
      * @return \self
      */
-    public function setCode(string $code): self
+    public function setCode(?string $code): self
     {
         $this->code = $code;
 
@@ -103,7 +102,7 @@ class Profil
      * 
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -113,16 +112,15 @@ class Profil
      * @param string $description
      * @return \self
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
-    
-     /**
-     * 
-     * @return type
+
+    /**
+     * @return ArrayCollection
      */
     public function getRoles()
     {
@@ -130,19 +128,19 @@ class Profil
     }
 
     /**
-     * 
-     * @param \Entity\Security\Role $role
+     * @param Role $role
+     * @return $this
      */
-    public function addRole(Role $role)
+    public function addRole(?Role $role)
     {
-        $this->roles->addElement($role);
+        $this->roles->add($role);
         $role;
         return $this;
     }
-    
+
     /**
-     * 
-     * @param \Entity\Security\Role $role
+     * @param Role $role
+     * @return $this
      */
     public function removeRole(Role $role)
     {

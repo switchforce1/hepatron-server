@@ -20,7 +20,7 @@ class VisitorController extends Controller
      */
     public function index(VisitorRepository $visitorRepository): Response
     {
-        return $this->render('admin_visitor/index.html.twig', ['visitors' => $visitorRepository->findAll()]);
+        return $this->render('Admin/visitor/index.html.twig', ['visitors' => $visitorRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class VisitorController extends Controller
             return $this->redirectToRoute('admin_visitor_index');
         }
 
-        return $this->render('admin_visitor/new.html.twig', [
+        return $this->render('Admin/visitor/new.html.twig', [
             'visitor' => $visitor,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class VisitorController extends Controller
      */
     public function show(Visitor $visitor): Response
     {
-        return $this->render('admin_visitor/show.html.twig', ['visitor' => $visitor]);
+        return $this->render('Admin/visitor/show.html.twig', ['visitor' => $visitor]);
     }
 
     /**
@@ -68,7 +68,7 @@ class VisitorController extends Controller
             return $this->redirectToRoute('admin_visitor_edit', ['id' => $visitor->getId()]);
         }
 
-        return $this->render('admin_visitor/edit.html.twig', [
+        return $this->render('Admin/visitor/edit.html.twig', [
             'visitor' => $visitor,
             'form' => $form->createView(),
         ]);

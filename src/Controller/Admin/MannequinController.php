@@ -20,7 +20,7 @@ class MannequinController extends Controller
      */
     public function index(MannequinRepository $mannequinRepository): Response
     {
-        return $this->render('admin_mannequin/index.html.twig', ['mannequins' => $mannequinRepository->findAll()]);
+        return $this->render('Admin/mannequin/index.html.twig', ['mannequins' => $mannequinRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class MannequinController extends Controller
             return $this->redirectToRoute('admin_mannequin_index');
         }
 
-        return $this->render('admin_mannequin/new.html.twig', [
+        return $this->render('Admin/mannequin/new.html.twig', [
             'mannequin' => $mannequin,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class MannequinController extends Controller
      */
     public function show(Mannequin $mannequin): Response
     {
-        return $this->render('admin_mannequin/show.html.twig', ['mannequin' => $mannequin]);
+        return $this->render('Admin/mannequin/show.html.twig', ['mannequin' => $mannequin]);
     }
 
     /**
@@ -68,7 +68,7 @@ class MannequinController extends Controller
             return $this->redirectToRoute('admin_mannequin_edit', ['id' => $mannequin->getId()]);
         }
 
-        return $this->render('admin_mannequin/edit.html.twig', [
+        return $this->render('Admin/mannequin/edit.html.twig', [
             'mannequin' => $mannequin,
             'form' => $form->createView(),
         ]);

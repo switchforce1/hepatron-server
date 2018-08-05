@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Profil{% endblock %}
+
+{% block content %}
+    <h1>Edit Profil</h1>
+
+    {{ include('Security/Profil/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('security_profil_index') }}">back to list</a>
+
+    {{ include('Security/Profil/_delete_form.html.twig') }}
+{% endblock %}

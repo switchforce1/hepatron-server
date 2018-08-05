@@ -20,7 +20,7 @@ class ParticularAccesseController extends Controller
      */
     public function index(ParticularAccesseRepository $particularAccesseRepository): Response
     {
-        return $this->render('security_particular_accesse/index.html.twig', ['particular_accesses' => $particularAccesseRepository->findAll()]);
+        return $this->render('Security/ParticularAccesse/index.html.twig', ['particular_accesses' => $particularAccesseRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class ParticularAccesseController extends Controller
             return $this->redirectToRoute('security_particular_accesse_index');
         }
 
-        return $this->render('security_particular_accesse/new.html.twig', [
+        return $this->render('Security/ParticularAccesse/new.html.twig', [
             'particular_accesse' => $particularAccesse,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class ParticularAccesseController extends Controller
      */
     public function show(ParticularAccesse $particularAccesse): Response
     {
-        return $this->render('security_particular_accesse/show.html.twig', ['particular_accesse' => $particularAccesse]);
+        return $this->render('Security/ParticularAccesse/show.html.twig', ['particular_accesse' => $particularAccesse]);
     }
 
     /**
@@ -68,7 +68,7 @@ class ParticularAccesseController extends Controller
             return $this->redirectToRoute('security_particular_accesse_edit', ['id' => $particularAccesse->getId()]);
         }
 
-        return $this->render('security_particular_accesse/edit.html.twig', [
+        return $this->render('Security/ParticularAccesse/edit.html.twig', [
             'particular_accesse' => $particularAccesse,
             'form' => $form->createView(),
         ]);

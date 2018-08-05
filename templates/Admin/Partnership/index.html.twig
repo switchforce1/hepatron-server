@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Partnership index{% endblock %}
+
+{% block content %}
+    <h1>Partnership index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partnership in partnerships %}
+            <tr>
+                <td>{{ partnership.id }}</td>
+                <td>
+                    <a href="{{ path('admin_partnership_show', {'id': partnership.id}) }}">show</a>
+                    <a href="{{ path('admin_partnership_edit', {'id': partnership.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_partnership_new') }}">Create new</a>
+{% endblock %}

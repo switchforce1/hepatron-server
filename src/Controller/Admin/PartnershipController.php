@@ -20,7 +20,7 @@ class PartnershipController extends Controller
      */
     public function index(PartnershipRepository $partnershipRepository): Response
     {
-        return $this->render('admin_partnership/index.html.twig', ['partnerships' => $partnershipRepository->findAll()]);
+        return $this->render('Admin/partnership/index.html.twig', ['partnerships' => $partnershipRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class PartnershipController extends Controller
             return $this->redirectToRoute('admin_partnership_index');
         }
 
-        return $this->render('admin_partnership/new.html.twig', [
+        return $this->render('Admin/partnership/new.html.twig', [
             'partnership' => $partnership,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class PartnershipController extends Controller
      */
     public function show(Partnership $partnership): Response
     {
-        return $this->render('admin_partnership/show.html.twig', ['partnership' => $partnership]);
+        return $this->render('Admin/partnership/show.html.twig', ['partnership' => $partnership]);
     }
 
     /**
@@ -68,7 +68,7 @@ class PartnershipController extends Controller
             return $this->redirectToRoute('admin_partnership_edit', ['id' => $partnership->getId()]);
         }
 
-        return $this->render('admin_partnership/edit.html.twig', [
+        return $this->render('Admin/partnership/edit.html.twig', [
             'partnership' => $partnership,
             'form' => $form->createView(),
         ]);

@@ -20,7 +20,7 @@ class RoleController extends Controller
      */
     public function index(RoleRepository $roleRepository): Response
     {
-        return $this->render('security_role/index.html.twig', ['roles' => $roleRepository->findAll()]);
+        return $this->render('Security/Role/index.html.twig', ['roles' => $roleRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class RoleController extends Controller
             return $this->redirectToRoute('security_role_index');
         }
 
-        return $this->render('security_role/new.html.twig', [
+        return $this->render('Security/Role/new.html.twig', [
             'role' => $role,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class RoleController extends Controller
      */
     public function show(Role $role): Response
     {
-        return $this->render('security_role/show.html.twig', ['role' => $role]);
+        return $this->render('Security/Role/show.html.twig', ['role' => $role]);
     }
 
     /**
@@ -68,7 +68,7 @@ class RoleController extends Controller
             return $this->redirectToRoute('security_role_edit', ['id' => $role->getId()]);
         }
 
-        return $this->render('security_role/edit.html.twig', [
+        return $this->render('Security/Role/edit.html.twig', [
             'role' => $role,
             'form' => $form->createView(),
         ]);

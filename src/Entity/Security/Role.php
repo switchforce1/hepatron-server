@@ -51,7 +51,7 @@ class Role
     protected $profil;
 
     /**
-     * Many Groups have Many Users.
+     * Many role have Many particularAccesses.
      * @ORM\ManyToMany(targetEntity="ParticularAccesse", mappedBy="roles")
      */
     protected $particularAccesses;
@@ -77,7 +77,7 @@ class Role
      * 
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
@@ -98,7 +98,7 @@ class Role
      * 
      * @return string
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -135,30 +135,9 @@ class Role
 
         return $this;
     }
-    
-    /**
-     * 
-     * @return type
-     */
-    public function getUtilisateur()
-    {
-        return $this->utilisateur;
-    }
 
     /**
-     * 
-     * @param type $utilisateur
-     * @return $this
-     */
-    public function setUtilisateur($utilisateur)
-    {
-        $this->utilisateur = $utilisateur;
-        return $this;
-    }
-
-    /**
-     * 
-     * @return type
+     * @return Profil
      */
     public function getProfil()
     {
@@ -166,7 +145,7 @@ class Role
     }
 
     /**
-     * 
+     *
      * @param type $profil
      * @return $this
      */
@@ -176,5 +155,21 @@ class Role
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getParticularAccesses()
+    {
+        return $this->particularAccesses;
+    }
 
+    /**
+     * @param mixed $particularAccesses
+     * @return Role
+     */
+    public function setParticularAccesses($particularAccesses)
+    {
+        $this->particularAccesses = $particularAccesses;
+        return $this;
+    }
 }

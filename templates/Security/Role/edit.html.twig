@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Role{% endblock %}
+
+{% block content %}
+    <h1>Edit Role</h1>
+
+    {{ include('Security/Role/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('security_role_index') }}">back to list</a>
+
+    {{ include('Security/Role/_delete_form.html.twig') }}
+{% endblock %}

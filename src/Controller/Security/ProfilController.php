@@ -20,7 +20,7 @@ class ProfilController extends Controller
      */
     public function index(ProfilRepository $profilRepository): Response
     {
-        return $this->render('security_profil/index.html.twig', ['profils' => $profilRepository->findAll()]);
+        return $this->render('Security/Profil/index.html.twig', ['profils' => $profilRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class ProfilController extends Controller
             return $this->redirectToRoute('security_profil_index');
         }
 
-        return $this->render('security_profil/new.html.twig', [
+        return $this->render('Security/Profil/new.html.twig', [
             'profil' => $profil,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class ProfilController extends Controller
      */
     public function show(Profil $profil): Response
     {
-        return $this->render('security_profil/show.html.twig', ['profil' => $profil]);
+        return $this->render('Security/Profil/show.html.twig', ['profil' => $profil]);
     }
 
     /**
@@ -68,7 +68,7 @@ class ProfilController extends Controller
             return $this->redirectToRoute('security_profil_edit', ['id' => $profil->getId()]);
         }
 
-        return $this->render('security_profil/edit.html.twig', [
+        return $this->render('Security/Profil/edit.html.twig', [
             'profil' => $profil,
             'form' => $form->createView(),
         ]);

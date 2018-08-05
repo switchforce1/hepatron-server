@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}ParticularAccesse index{% endblock %}
+
+{% block content %}
+    <h1>ParticularAccesse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for particular_accesse in particular_accesses %}
+            <tr>
+                <td>{{ particular_accesse.id }}</td>
+                <td>
+                    <a href="{{ path('security_particular_accesse_show', {'id': particular_accesse.id}) }}">show</a>
+                    <a href="{{ path('security_particular_accesse_edit', {'id': particular_accesse.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('security_particular_accesse_new') }}">Create new</a>
+{% endblock %}

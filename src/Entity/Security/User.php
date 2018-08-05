@@ -29,7 +29,15 @@ class User extends BaseUser
     /**
      * @var Profil
      *
-     * @ORM\ManyToOne(targetEntity="Profil")
+     * @ORM\OneToOne(targetEntity="App\Entity\Security\Avatar")
+     * @ORM\JoinColumn(name="avatar_id", nullable=true, referencedColumnName="id")
+     */
+    protected $avatar;
+
+    /**
+     * @var Profil
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Security\Profil")
      * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
      */
     protected $profil;
@@ -72,7 +80,7 @@ class User extends BaseUser
     /**
      * @return Profil
      */
-    public function getProfil(): Profil
+    public function getProfil(): ?Profil
     {
         return $this->profil;
     }
@@ -81,7 +89,7 @@ class User extends BaseUser
      * @param Profil $profil
      * @return User
      */
-    public function setProfil(Profil $profil): User
+    public function setProfil(?Profil $profil): User
     {
         $this->profil = $profil;
         return $this;
@@ -90,7 +98,7 @@ class User extends BaseUser
     /**
      * @return ParticularAccesse
      */
-    public function getPaticularAccesse(): ParticularAccesse
+    public function getPaticularAccesse(): ?ParticularAccesse
     {
         return $this->paticularAccesse;
     }
@@ -99,7 +107,7 @@ class User extends BaseUser
      * @param ParticularAccesse $paticularAccesse
      * @return User
      */
-    public function setPaticularAccesse(ParticularAccesse $paticularAccesse): User
+    public function setPaticularAccesse(?ParticularAccesse $paticularAccesse): User
     {
         $this->paticularAccesse = $paticularAccesse;
         return $this;
