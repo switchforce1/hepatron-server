@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Design{% endblock %}
+
+{% block body %}
+    <h1>Design</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ design.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ design.label }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ design.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('middle_design_index') }}">back to list</a>
+
+    <a href="{{ path('middle_design_edit', {'id': design.id}) }}">edit</a>
+
+    {{ include('Middle/Design/_delete_form.html.twig') }}
+{% endblock %}

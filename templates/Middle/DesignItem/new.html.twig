@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New DesignItem{% endblock %}
+
+{% block body %}
+    <h1>Create new DesignItem</h1>
+
+    {{ include('Middle/DesignItem/_form.html.twig') }}
+
+    <a href="{{ path('middle_design_item_index') }}">back to list</a>
+{% endblock %}

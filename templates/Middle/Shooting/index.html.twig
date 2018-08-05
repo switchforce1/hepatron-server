@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Shooting index{% endblock %}
+
+{% block body %}
+    <h1>Shooting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shooting in shootings %}
+            <tr>
+                <td>{{ shooting.id }}</td>
+                <td>{{ shooting.label }}</td>
+                <td>{{ shooting.description }}</td>
+                <td>
+                    <a href="{{ path('middle_shooting_show', {'id': shooting.id}) }}">show</a>
+                    <a href="{{ path('middle_shooting_edit', {'id': shooting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('middle_shooting_new') }}">Create new</a>
+{% endblock %}

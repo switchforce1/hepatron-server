@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Image index{% endblock %}
+
+{% block body %}
+    <h1>Image index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>CreationDate</th>
+                <th>UpdateDate</th>
+                <th>FilePath</th>
+                <th>Detail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td>{{ image.name }}</td>
+                <td>{{ image.description }}</td>
+                <td>{{ image.creationDate ? image.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ image.updateDate ? image.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ image.filePath }}</td>
+                <td>{{ image.detail ? image.detail|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_image_show', {'id': image.id}) }}">show</a>
+                    <a href="{{ path('admin_image_edit', {'id': image.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_image_new') }}">Create new</a>
+{% endblock %}

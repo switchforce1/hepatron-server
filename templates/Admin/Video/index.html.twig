@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Video index{% endblock %}
+
+{% block body %}
+    <h1>Video index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>CreationDate</th>
+                <th>UpdateDate</th>
+                <th>FilePath</th>
+                <th>Detail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.id }}</td>
+                <td>{{ video.name }}</td>
+                <td>{{ video.description }}</td>
+                <td>{{ video.creationDate ? video.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ video.updateDate ? video.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ video.filePath }}</td>
+                <td>{{ video.detail ? video.detail|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_video_show', {'id': video.id}) }}">show</a>
+                    <a href="{{ path('admin_video_edit', {'id': video.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_video_new') }}">Create new</a>
+{% endblock %}

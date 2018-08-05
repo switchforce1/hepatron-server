@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}DesignItem index{% endblock %}
+
+{% block body %}
+    <h1>DesignItem index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Required</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for design_item in design_items %}
+            <tr>
+                <td>{{ design_item.id }}</td>
+                <td>{{ design_item.required ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('middle_design_item_show', {'id': design_item.id}) }}">show</a>
+                    <a href="{{ path('middle_design_item_edit', {'id': design_item.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('middle_design_item_new') }}">Create new</a>
+{% endblock %}

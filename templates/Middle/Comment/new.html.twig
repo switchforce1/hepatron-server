@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Comment{% endblock %}
+
+{% block body %}
+    <h1>Create new Comment</h1>
+
+    {{ include('Middle/Comment/_form.html.twig') }}
+
+    <a href="{{ path('middle_comment_index') }}">back to list</a>
+{% endblock %}

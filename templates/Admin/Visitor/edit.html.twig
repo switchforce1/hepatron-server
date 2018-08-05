@@ -5,9 +5,9 @@
 {% block content %}
     <h1>Edit Visitor</h1>
 
-    {{ include('admin_visitor/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('Admin/Visitor/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('admin_visitor_index') }}">back to list</a>
 
-    {{ include('admin_visitor/_delete_form.html.twig') }}
+    {{ include('Admin/Visitor/_delete_form.html.twig') }}
 {% endblock %}

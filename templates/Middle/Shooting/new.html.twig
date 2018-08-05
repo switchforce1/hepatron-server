@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Shooting{% endblock %}
+
+{% block body %}
+    <h1>Create new Shooting</h1>
+
+    {{ include('Middle/Shooting/_form.html.twig') }}
+
+    <a href="{{ path('middle_shooting_index') }}">back to list</a>
+{% endblock %}

@@ -43,6 +43,13 @@ class Publication
     protected $description;
 
     /**
+     * @var Visibility
+     * @ORM\ManyToOne(targetEntity="App\Entity\Middle\Visibility")
+     * @ORM\JoinColumn(name="visibility_id", nullable=false)
+     */
+    protected $visibility;
+
+    /**
      * @var Subscriber
      * @ORM\ManyToOne(targetEntity="App\Entity\Admin\Subscriber")
      * @ORM\JoinColumn(name="subscriber_id", nullable=false)

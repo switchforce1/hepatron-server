@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Middle
  * @ORM\Entity()
  */
-class Visiblity
+class Visibility
 {
     // Every ONE
     const CODE_PUBLIC = "PUBLIC";
@@ -64,7 +64,7 @@ class Visiblity
 
     /**
      * @param mixed $id
-     * @return Visiblity
+     * @return Visibility
      */
     public function setId($id)
     {
@@ -82,9 +82,9 @@ class Visiblity
 
     /**
      * @param string $label
-     * @return Visiblity
+     * @return Visibility
      */
-    public function setLabel(string $label): Visiblity
+    public function setLabel(string $label): Visibility
     {
         $this->label = $label;
         return $this;
@@ -100,9 +100,9 @@ class Visiblity
 
     /**
      * @param string $code
-     * @return Visiblity
+     * @return Visibility
      */
-    public function setCode(string $code): Visiblity
+    public function setCode(string $code): Visibility
     {
         $this->code = $code;
         return $this;
@@ -118,9 +118,9 @@ class Visiblity
 
     /**
      * @param string $description
-     * @return Visiblity
+     * @return Visibility
      */
-    public function setDescription(string $description): Visiblity
+    public function setDescription(string $description): Visibility
     {
         $this->description = $description;
         return $this;

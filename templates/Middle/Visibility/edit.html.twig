@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Visibility{% endblock %}
+
+{% block body %}
+    <h1>Edit Visibility</h1>
+
+    {{ include('Middle/Visibility/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('middle_visibility_index') }}">back to list</a>
+
+    {{ include('Middle/Visibility/_delete_form.html.twig') }}
+{% endblock %}
