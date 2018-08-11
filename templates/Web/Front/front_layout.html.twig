@@ -87,14 +87,14 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         {% block header %}
-            {% include 'block/_default_banner.html.twig' %}
+            {% include 'block/front/_default_banner.html.twig' %}
         {% endblock %}
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
+            {#Menu de gauche#}
             {% block menu  %}
-                {% include('block/_default_menu.html.twig') %}
+                {% include('block/front/_default_menu.html.twig') %}
             {% endblock %}
             <!-- /.sidebar -->
         </aside>
@@ -129,7 +129,7 @@
 
         <!-- Control Sidebar -->
         {% block parameter_menu %}
-            {% include 'block/_default_parameter_menu.html.twig' %}
+            {#{% include 'block/_default_parameter_menu.html.twig' %}#}
         {% endblock %}
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
@@ -141,6 +141,7 @@
     {% block javascripts %}
         <script src="{{ asset('build/js/app.js') }}"></script>
         {#<script src="{{ asset('build/js/template.js') }}"></script>#}
+
         <!-- jQuery 3 -->
         {#<script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>#}
         <script src="{{ asset('copy/plugins/jquery/dist/jquery.min.js') }}"></script>

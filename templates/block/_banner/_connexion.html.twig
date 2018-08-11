@@ -1,0 +1,28 @@
+<li class="dropdown tasks-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-unlock"></i>
+        {#<span class="label label-danger">9</span>#}
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">Connectez vous</li>
+        <li>
+            <form action="{{ path('fos_user_security_login') }}" class="form">
+                <div class="form-group">
+                    <input type="text" placeholder="login" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="password" class="form-control">
+                </div>
+                <div class="form-group center-block">
+                    <button type="submit" class="btn btn-info center-block">
+                        Connexion
+                        <i class="fa fa-unlock-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </li>
+        {#<li class="footer">#}
+            {#<a href="#">View all tasks</a>#}
+        {#</li>#}
+    </ul>
+</li>

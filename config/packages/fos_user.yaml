@@ -30,7 +30,7 @@ parameters:
 fos_user:
   db_driver: orm
   firewall_name: main
-  user_class: Entity\Security\Utilisateur
+  user_class: App\Entity\Security\User
   from_email:
       address: "hello@youmail.com"
       sender_name: "Sender Name"

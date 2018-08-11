@@ -30,7 +30,7 @@ class User extends BaseUser
      * @var Profil
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Security\Avatar")
-     * @ORM\JoinColumn(name="avatar_id", nullable=true, referencedColumnName="id")
+     * @ORM\JoinColumn(name="avatar_id", nullable=true, referencedColumnName="id", nullable=true)
      */
     protected $avatar;
 
@@ -38,7 +38,7 @@ class User extends BaseUser
      * @var Profil
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Security\Profil")
-     * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="profil_id", referencedColumnName="id", nullable=true)
      */
     protected $profil;
 
@@ -47,7 +47,7 @@ class User extends BaseUser
      * @var ParticularAccesse
      *
      * @ORM\OneToOne(targetEntity="ParticularAccesse")
-     * @ORM\JoinColumn(name="particular_access_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="particular_access_id", referencedColumnName="id", nullable=true)
      */
     protected $paticularAccesse;
     

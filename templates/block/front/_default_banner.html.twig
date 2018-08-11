@@ -18,16 +18,20 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
-                {% include 'block/_banner/_messages.html.twig' %}
-                <!-- Notifications: style can be found in dropdown.less -->
-                {% include 'block/_banner/_notifications.html.twig' %}
-                <!-- Tasks: style can be found in dropdown.less -->
-                {% include 'block/_banner/_tasks.html.twig' %}
-                <!-- User Account: style can be found in dropdown.less -->
-                {% include 'block/_banner/_user.html.twig' %}
-                <!-- Control Sidebar Toggle Button -->
-                {% include 'block/_banner/_parameters.html.twig' %}
+                {% if app.user %}
+                    <!-- Messages: style can be found in dropdown.less-->
+                    {% include 'block/_banner/_messages.html.twig' %}
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    {% include 'block/_banner/_notifications.html.twig' %}
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    {% include 'block/_banner/_tasks.html.twig' %}
+                    <!-- User Account: style can be found in dropdown.less -->
+                    {% include 'block/_banner/_user.html.twig' %}
+                    <!-- Control Sidebar Toggle Button -->
+                    {#{% include 'block/_banner/_parameters.html.twig' %}#}
+                {% else %}
+                    {% include 'block/_banner/_connexion.html.twig' %}
+                {% endif %}
             </ul>
         </div>
     </nav>
