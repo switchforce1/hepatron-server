@@ -63,7 +63,15 @@ class Role
     {
         $this->particularAccesses = new ArrayCollection();
     }
-    
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->label;
+    }
+
     /**
      * 
      * @return type

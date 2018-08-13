@@ -27,7 +27,7 @@
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <!-- demo style -->
-        <style>
+        {#<style>
             /* FROM HTTP://WWW.GETBOOTSTRAP.COM
              * Glyphicons
              *
@@ -75,7 +75,7 @@
                     width: 12.5%;
                 }
             }
-        </style>
+        </style>#}
     {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,19 +85,23 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue layout-top-nav">
     <div class="wrapper">
         {% block header %}
             {% include 'block/front/_default_banner.html.twig' %}
         {% endblock %}
-        <aside class="main-sidebar">
-            <!-- sidebar: style can be found in sidebar.less -->
-            {#Menu de gauche#}
-            {% block menu  %}
-                {% include('block/front/_default_menu.html.twig') %}
-            {% endblock %}
-            <!-- /.sidebar -->
-        </aside>
+        {% block sidebar %}
+            {% if app.user %}
+                <aside class="main-sidebar">
+                    <!-- sidebar: style can be found in sidebar.less -->
+                    {#Menu de gauche#}
+                    {% block menu  %}
+                        {% include('block/front/_default_menu.html.twig') %}
+                    {% endblock %}
+                    <!-- /.sidebar -->
+                </aside>
+            {% endif %}
+        {% endblock sidebar %}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -134,7 +138,7 @@
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
+        {#<div class="control-sidebar-bg"></div>#}
     </div>
     <!-- ./wrapper -->
 

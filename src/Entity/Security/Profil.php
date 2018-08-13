@@ -47,6 +47,14 @@ class Profil
         $this->roles = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->label;
+    }
+
 
     /**
      * 
