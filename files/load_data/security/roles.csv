@@ -1,0 +1,12 @@
+code;label;description
+ROLE_USER;Utilisateur connceté;Utilisateur connceté
+ROLE_ANONYMOUS;Utilisateur non connceté;Utilisateur non connceté
+ROLE_ADMIN;Administrateur;Administrateur
+ROLE_SUPER_ADMIN;Super administrateur;Administrateur qui peut créer des admin
+ROLE_INTERNE;membre interne;Interne à l'entreprise
+ROLE_TAILOR;Couturier;Couturier
+ROLE_SELLER;Vendeur;Vendeur
+ROLE_MANNEQUIN;Manequin;Manequin
+ROLE_EVENT_MAKER;Organisateur d'evenement;Organisateur d'evenement
+ROLE_MEMBER;membre;membre
+ROLE_VISITOR;Visiteur;Visiteur
