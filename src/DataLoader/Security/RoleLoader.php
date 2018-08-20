@@ -16,6 +16,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class RoleLoader implements LoaderInterface
 {
+    const LOAD_ROLE_FILE_NAME = 'roles.csv';
+
     /**
      * @var EntityManager
      */
