@@ -11,6 +11,8 @@ namespace App\DataLoader\Security;
 use App\DataLoader\DataLoader;
 use App\DataLoader\LoaderInterface;
 use App\Entity\Security\Profil;
+use App\Helper\Middle\CsvHelper;
+use App\Helper\Middle\FileHelper;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -20,7 +22,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ProfilLoader extends DataLoader implements LoaderInterface
 {
 
-    const LOAD_PROFIL_FILE_NAME = 'profils.csv';
+    const LOAD_PROFIL_FILE_NAME = 'security'.DIRECTORY_SEPARATOR.'profils.csv';
 
     /**
      * @var EntityManagerInterface
@@ -30,10 +32,13 @@ class ProfilLoader extends DataLoader implements LoaderInterface
     /**
      * ProfilLoader constructor.
      * @param EntityManagerInterface $entityManager
+     * @param FileHelper $fileHelper
+     * @param CsvHelper $csvHelper
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, FileHelper $fileHelper, CsvHelper $csvHelper)
     {
         $this->entityManager = $entityManager;
+        parent::__construct($fileHelper, $csvHelper);
     }
 
     /**
@@ -80,6 +85,6 @@ class ProfilLoader extends DataLoader implements LoaderInterface
      */
     protected function getLoadDataFilePath(): string
     {
-        // TODO: Implement getLoadDataFilePath() method.
+        return parent::getLoadDataDirectory().DIRECTORY_SEPARATOR.self::LOAD_PROFIL_FILE_NAME;
     }
 }

@@ -9,14 +9,18 @@
 namespace App\DataLoader\Security;
 
 
+use App\DataLoader\DataLoader;
 use App\DataLoader\LoaderInterface;
+use App\Entity\Security\Role;
+use App\Helper\Middle\CsvHelper;
+use App\Helper\Middle\FileHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class RoleLoader implements LoaderInterface
+class RoleLoader extends DataLoader implements LoaderInterface
 {
-    const LOAD_ROLE_FILE_NAME = 'roles.csv';
+    const LOAD_ROLE_FILE_NAME = 'security'.DIRECTORY_SEPARATOR.'roles.csv';
 
     /**
      * @var EntityManager
@@ -24,35 +28,54 @@ class RoleLoader implements LoaderInterface
     private $entityManager;
 
     /**
-     * @var KernelInterface
-     */
-    private $kernel;
-
-    /**
      * RoleLoader constructor.
      * @param EntityManagerInterface $entityManager
+     * @param FileHelper $fileHelper
+     * @param CsvHelper $csvHelper
      */
-    public function __construct(EntityManagerInterface $entityManager, KernelInterface $kernel)
+    public function __construct(EntityManagerInterface $entityManager, FileHelper $fileHelper, CsvHelper $csvHelper)
     {
         $this->entityManager = $entityManager;
-        $this->kernel = $kernel;
+        parent::__construct($fileHelper, $csvHelper);
     }
 
-    
+    /**
+     * Recupere le nom du fichier de données
+     * @return string
+     */
+    protected function getLoadDataFilePath(): string
+    {
+        return parent::getLoadDataDirectory().DIRECTORY_SEPARATOR.self::LOAD_ROLE_FILE_NAME;
+    }
 
     /**
      * @return bool
+     * @throws \Exception
      */
-    public function load(): Boolean
+    public function load(): bool
     {
-        // TODO: Implement load() method.
+        return parent::load();
     }
 
     /**
-     * @return array|null
+     * @param array $element
+     * @return Role|bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function getLoadData(): ?array
+    protected function loadElement(array $element)
     {
-        // TODO: Implement getLoadData() method.
+        $role = new Role();
+
+        $role
+            ->setCode(utf8_decode($element[0]))
+            ->setLabel(utf8_decode($element[1]))
+            ->setDescription(utf8_decode($element[2]))
+        ;
+
+        $this->entityManager->persist($role);
+        $this->entityManager->flush();
+
+        return $role;
     }
 }

@@ -17,7 +17,7 @@ interface LoaderInterface
     /**
      * @return bool
      */
-    public function load():Boolean;
+    public function load():bool;
 
     /**
      * @return array|null

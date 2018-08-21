@@ -31,6 +31,18 @@ abstract class DataLoader implements  LoaderInterface
     private $csvHelper;
 
     /**
+     * DataLoader constructor.
+     * @param FileHelper $fileHelper
+     * @param CsvHelper $csvHelper
+     */
+    public function __construct(FileHelper $fileHelper, CsvHelper $csvHelper)
+    {
+        $this->fileHelper = $fileHelper;
+        $this->csvHelper = $csvHelper;
+    }
+
+
+    /**
      * @return bool
      * @throws \Exception
      */
@@ -50,7 +62,6 @@ abstract class DataLoader implements  LoaderInterface
                 $this->loadElement($element);
             }
         }
-
         return true;
     }
 
@@ -61,7 +72,7 @@ abstract class DataLoader implements  LoaderInterface
     public function getLoadData(): ?array
     {
         try{
-            $data = $this->csvHelper->readData($this->getLoadDataFilePath());
+            $data = $this->csvHelper->readData($this->getLoadDataFilePath(), ';');
         }catch (\Exception $exception){
             throw new \Exception($exception->getMessage());
         }

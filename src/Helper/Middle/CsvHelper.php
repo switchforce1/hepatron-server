@@ -20,7 +20,7 @@ class CsvHelper
      *
      * @return array
      */
-    public function readData(string $filePath, string $delimiter = ',', int $limit = 1000)
+    public function readData(string $filePath, string $delimiter = ';', int $limit = 1000)
     {
         $data = [];
         $row = 1;
