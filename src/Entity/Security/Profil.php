@@ -32,10 +32,16 @@ class Profil
      * @ORM\Column(type="text")
      */
     protected $description;
-    
+
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Role", mappedBy="profil")
+     * Many Groups have Many Roles.
+     *
+     *
+     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\JoinTable(name="groups_roles",
+     *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     *  )
      */
     protected $roles;
 
@@ -142,7 +148,6 @@ class Profil
     public function addRole(?Role $role)
     {
         $this->roles->add($role);
-        $role;
         return $this;
     }
 

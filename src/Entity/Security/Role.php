@@ -34,7 +34,7 @@ class Role
     protected $label;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     protected $code;
 
@@ -42,13 +42,6 @@ class Role
      * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
-    
-    /**
-     * @var Profil
-     * @ORM\ManyToOne(targetEntity="Profil", inversedBy="roles")
-     * @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
-     */
-    protected $profil;
 
     /**
      * Many role have Many particularAccesses.
@@ -141,25 +134,6 @@ class Role
     {
         $this->description = $description;
 
-        return $this;
-    }
-
-    /**
-     * @return Profil
-     */
-    public function getProfil()
-    {
-        return $this->profil;
-    }
-
-    /**
-     *
-     * @param type $profil
-     * @return $this
-     */
-    public function setProfil($profil)
-    {
-        $this->profil = $profil;
         return $this;
     }
 
