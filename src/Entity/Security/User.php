@@ -17,7 +17,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class User extends BaseUser
 {
-    //put your code here
 
     /**
      * @ORM\Id()
@@ -56,8 +55,15 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        $this->enabled = true;
     }
-    
+
+    public function __toString()
+    {
+        return parent::__toString();
+    }
+
+
     /**
      * 
      * @return int
@@ -112,4 +118,24 @@ class User extends BaseUser
         $this->paticularAccesse = $paticularAccesse;
         return $this;
     }
+
+    /**
+     * @return \App\Entity\Security\Profil
+     */
+    public function getAvatar(): \App\Entity\Security\Profil
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param \App\Entity\Security\Profil $avatar
+     * @return User
+     */
+    public function setAvatar(\App\Entity\Security\Profil $avatar): User
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+
 }

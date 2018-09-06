@@ -9,26 +9,26 @@
 namespace App\Command\Middle\LoadData;
 
 use App\DataLoader\Security\RoleLoader;
-use App\DataLoader\Security\RoleProfilLoader;
+use App\DataLoader\Security\RolesProfilsLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class LoadRoleProfilCommand extends Command
+class LoadRolesProfilsCommand extends Command
 {
     /**
      * @var RoleLoader
      */
-    private $roleProfilLoader;
+    private $rolesProfilsLoader;
 
     /**
      * LoadRoleProfilCommand constructor.
-     * @param RoleProfilLoader $roleProfilLoader
+     * @param RolesProfilsLoader $roleProfilLoader
      */
-    public function __construct(RoleProfilLoader $roleProfilLoader)
+    public function __construct(RolesProfilsLoader $rolesProfilsLoader)
     {
         parent::__construct();
-        $this->roleProfilLoader = $roleProfilLoader;
+        $this->rolesProfilsLoader = $rolesProfilsLoader;
     }
 
 
@@ -58,7 +58,7 @@ class LoadRoleProfilCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $loadingResult = $this->roleProfilLoader->load();
+        $loadingResult = $this->rolesProfilsLoader->load();
 
         $output->write($loadingResult);
     }

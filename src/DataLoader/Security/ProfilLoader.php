@@ -60,8 +60,8 @@ class ProfilLoader extends DataLoader implements LoaderInterface
 
         $profil
             ->setCode(utf8_decode($element[0]))
-            ->setLabel(utf8_decode($element[1]))
-            ->setDescription(utf8_decode($element[2]))
+            ->setLabel(($element[1]))
+            ->setDescription(($element[2]))
         ;
 
         $this->entityManager->persist($profil);

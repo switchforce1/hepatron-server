@@ -9,10 +9,11 @@ use App\Repository\Security\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/security")
+ * @Route("/security/general")
  */
 class GeneralController extends Controller
 {
@@ -53,16 +54,26 @@ class GeneralController extends Controller
     /**
      * @Route("/{id}", name="security_general_show", methods="GET")
      */
-    public function profil(User $user): Response
+    public function profil(Request $request, UserRepository $userRepository): Response
     {
+        $userId = $request->get('id');
+        if(!$userId ){
+            throw new HttpException(404, 'pas de parametres');
+        }
+        $user = $userRepository->find($userId);
+        if(!$user ){
+            throw new HttpException(404, 'pas de parametres');
+        }
         return $this->render('Security/General/show.html.twig', ['user' => $user]);
     }
 
     /**
      * @Route("/{id}/edit", name="security_general_edit", methods="GET|POST")
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, UserRepository $userRepository): Response
     {
+        $user = $userRepository->find($request->get('id'));
+
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 
@@ -81,8 +92,11 @@ class GeneralController extends Controller
     /**
      * @Route("/{id}", name="security_general_delete", methods="DELETE")
      */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request, UserRepository $userRepository): Response
     {
+        //gettting user from params
+        $user = $userRepository->find($request->get('id'));
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);

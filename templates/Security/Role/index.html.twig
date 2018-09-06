@@ -5,7 +5,8 @@
 {% block content %}
     <h1>Role index</h1>
 
-    <table class="table">
+    <div class="dataTable">
+        <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -34,6 +35,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
     <a href="{{ path('security_role_new') }}">Create new</a>
 {% endblock %}

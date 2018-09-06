@@ -1,9 +1,9 @@
 code;label;description
-ROLE_USER;Utilisateur connceté;Utilisateur connceté
-ROLE_ANONYMOUS;Utilisateur non connceté;Utilisateur non connceté
+ROLE_USER;Utilisateur conncetÃ©;Utilisateur conncetÃ©
+ROLE_ANONYMOUS;Utilisateur non conncetÃ©;Utilisateur non conncetÃ©
 ROLE_ADMIN;Administrateur;Administrateur
-ROLE_SUPER_ADMIN;Super administrateur;Administrateur qui peut créer des admin
-ROLE_INTERNE;membre interne;Interne à l'entreprise
+ROLE_SUPER_ADMIN;Super administrateur;Administrateur qui peut crÃ©er des admin
+ROLE_INTERNE;membre interne;Interne Ã  l'entreprise
 ROLE_TAILOR;Couturier;Couturier
 ROLE_SELLER;Vendeur;Vendeur
 ROLE_MANNEQUIN;Manequin;Manequin

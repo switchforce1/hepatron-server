@@ -17,10 +17,10 @@ use App\Helper\Middle\CsvHelper;
 use App\Helper\Middle\FileHelper;
 use Doctrine\ORM\EntityManagerInterface;
 
-class RoleProfilLoader extends  DataLoader implements LoaderInterface
+class RolesProfilsLoader extends  DataLoader implements LoaderInterface
 {
 
-    const LOAD_ROLE_PROFIL_FILE_NAME = 'security'.DIRECTORY_SEPARATOR.'role_profils.csv';
+    const LOAD_ROLE_PROFIL_FILE_NAME = 'security'.DIRECTORY_SEPARATOR.'roles_profils.csv';
 
     /**
      * @var EntityManagerInterface
@@ -64,7 +64,9 @@ class RoleProfilLoader extends  DataLoader implements LoaderInterface
             $role = $this->entityManager->getRepository(Role::class)->findOneBy([
                 'code'=> $element[1],
             ]);
-            $profil->addRole($role);
+            if($role && $role instanceof Role){
+                $profil->addRole($role);
+            }
         }
 
         $this->entityManager->flush();

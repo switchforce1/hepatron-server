@@ -1,5 +1,8 @@
 code;label;description
+VISITOR;Visiteur;Visiteur
 TAILOR;Couturier;Couturier , tailleur, createur de mode
-SELLER;Vendeur;Vendeur d'articles destinés à la couture
+SELLER;Vendeur;Vendeur d'articles destinÃ©s Ã  la couture
 MANNEQUIN;Manequin;Manequin
-EVENT_MAKER;Organisateur d'évenement;Organisateur d'évenement, pouvant concerner la mode
+EVENT_MAKER;Organisateur d'Ã©venement;Organisateur d'Ã©venement, pouvant concerner la mode
+ADMINISTRATOR;Administrateur;Administrateur du site
+SUPER_ADMINISTRATOR;Super administrateur;Super administrateur du site (tres technique)

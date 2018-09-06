@@ -38,7 +38,7 @@ class Profil
      *
      *
      * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(name="groups_roles",
+     * @ORM\JoinTable(name="roles_profis",
      *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      *  )

@@ -27,7 +27,7 @@
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <!-- demo style -->
-        {#<style>
+        <style>
             /* FROM HTTP://WWW.GETBOOTSTRAP.COM
              * Glyphicons
              *
@@ -75,7 +75,7 @@
                     width: 12.5%;
                 }
             }
-        </style>#}
+        </style>
     {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,82 +85,76 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue layout-top-nav">
-    <div class="wrapper">
-        {% block header %}
-            {% include 'block/front/_default_banner.html.twig' %}
-        {% endblock %}
-        {% block sidebar %}
-            {% if app.user %}
-                <aside class="main-sidebar">
-                    <!-- sidebar: style can be found in sidebar.less -->
-                    {#Menu de gauche#}
-                    {% block menu  %}
-                        {% include('block/front/_default_menu.html.twig') %}
-                    {% endblock %}
-                    <!-- /.sidebar -->
-                </aside>
-            {% endif %}
-        {% endblock sidebar %}
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper fixed">
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                {% block page_title %}
-                    <h1>
-                        Icons
-                        <small>a set of beautiful icons</small>
-                    </h1>
-                {% endblock %}
-                {% block breadcrumb %}
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">UI</a></li>
-                        <li class="active">Icons</li>
-                    </ol>
-                {% endblock %}
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-                {% block content %}{% endblock %}
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        {% include 'block/_default_footer.html.twig' %}
-
-        <!-- Control Sidebar -->
-        {% block parameter_menu %}
-            {#{% include 'block/_default_parameter_menu.html.twig' %}#}
-        {% endblock %}
-        <!-- /.control-sidebar -->
-        <!-- Add the sidebar's background. This div must be placed
-             immediately after the control sidebar -->
-        {#<div class="control-sidebar-bg"></div>#}
-    </div>
-    <!-- ./wrapper -->
-
-    {% block javascripts %}
-        <script src="{{ asset('build/js/app.js') }}"></script>
-        {#<script src="{{ asset('build/js/template.js') }}"></script>#}
-
-        <!-- jQuery 3 -->
-        {#<script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>#}
-        <script src="{{ asset('copy/plugins/jquery/dist/jquery.min.js') }}"></script>
-        <!-- Bootstrap 3.3.7 -->
-        {#<script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>#}
-        <script src="{{ asset('copy/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-        <!-- FastClick -->
-        {#<script src="{{ asset('plugins/fastclick/lib/fastclick.js') }}"></script>#}
-        <script src="{{ asset('copy/plugins/fastclick/lib/fastclick.js') }}"></script>
-        <!-- AdminLTE App -->
-        {#<script src="{{ asset('plugins/extra_leyout/js/adminlte.min.js') }}"></script>#}
-        <script src="{{ asset('copy/extra_layout/js/adminlte.min.js') }}"></script>
-        <!-- AdminLTE for demo purposes -->
-        {#<script src="{{ asset('plugins/js/demo.js') }}"></script>#}
-        <script src="{{ asset('copy/extra_layout/js/demo.js') }}"></script>
+    {% block header %}
+        {% include 'block/front/_default_banner.html.twig' %}
     {% endblock %}
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        {% block menu  %}
+            {% include('block/front/_default_menu.html.twig') %}
+        {% endblock %}
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            {% block page_title %}
+                <h1>
+                    Icons
+                    <small>a set of beautiful icons</small>
+                </h1>
+            {% endblock %}
+            {% block breadcrumb %}
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="{{ path('security_general_index') }}"><i class="fa fa-dashboard"></i>
+                            Home
+                        </a>
+                    </li>
+                </ol>
+            {% endblock %}
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include 'block/_default_footer.html.twig' %}
+
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+    {#<script src="{{ asset('build/js/template.js') }}"></script>#}
+
+    <!-- jQuery 3 -->
+    {#<script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>#}
+    <script src="{{ asset('copy/plugins/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    {#<script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>#}
+    <script src="{{ asset('copy/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    {#<script src="{{ asset('plugins/fastclick/lib/fastclick.js') }}"></script>#}
+    <script src="{{ asset('copy/plugins/fastclick/lib/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    {#<script src="{{ asset('plugins/extra_leyout/js/adminlte.min.js') }}"></script>#}
+    <script src="{{ asset('copy/extra_layout/js/adminlte.min.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    {#<script src="{{ asset('plugins/js/demo.js') }}"></script>#}
+    <script src="{{ asset('copy/extra_layout/js/demo.js') }}"></script>
+{% endblock %}
 </body>
 </html>

@@ -28,7 +28,7 @@ class Avatar extends BaseFile
 
     /**
      * @var User
-     * @ORM\OneToOne(targetEntity="App\Entity\Security\User")
+     * @ORM\OneToOne(targetEntity="User")
      */
     protected $user;
 }

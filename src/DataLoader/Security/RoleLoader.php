@@ -68,9 +68,9 @@ class RoleLoader extends DataLoader implements LoaderInterface
         $role = new Role();
 
         $role
-            ->setCode(utf8_decode($element[0]))
-            ->setLabel(utf8_decode($element[1]))
-            ->setDescription(utf8_decode($element[2]))
+            ->setCode($element[0])
+            ->setLabel($element[1])
+            ->setDescription($element[2])
         ;
 
         $this->entityManager->persist($role);

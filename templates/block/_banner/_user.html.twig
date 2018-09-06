@@ -41,9 +41,14 @@
         </ul>
     </li>
 {% else %}
-    <li class="dropdown user user-menu">
-        <label class="label label-danger">
-            NO User ERROR!!!
-        </label>
+    <li class="">
+        <a href="{{ path("fos_user_security_login") }}" >
+            <span class="fa fa-unlock-alt"></span> Connexion
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ path("security_user_new") }}" >
+            <span class="fa fa-user-plus"></span> Register
+        </a>
     </li>
 {% endif %}

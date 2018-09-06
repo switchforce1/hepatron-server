@@ -111,9 +111,11 @@
                 {% endblock %}
                 {% block breadcrumb %}
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">UI</a></li>
-                        <li class="active">Icons</li>
+                        <li>
+                            <a href="{{ path('security_general_index') }}"><i class="fa fa-dashboard"></i>
+                                Home
+                            </a>
+                        </li>
                     </ol>
                 {% endblock %}
             </section>

@@ -20,7 +20,9 @@ class RoleController extends Controller
      */
     public function index(RoleRepository $roleRepository): Response
     {
-        return $this->render('Security/Role/index.html.twig', ['roles' => $roleRepository->findAll()]);
+        $roles =  $roleRepository->findAll();
+
+        return $this->render('Security/Role/index.html.twig', ['roles' => $roles]);
     }
 
     /**
