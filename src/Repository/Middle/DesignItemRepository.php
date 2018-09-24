@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Repository\Admin;
+namespace App\Repository\Middle;
 
-use App\Entity\Admin\Tailor;
+use App\Entity\Middle\Design;
+use App\Entity\Middle\DesignItem;
 use App\Entity\Security\Profil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Profil|null find($id, $lockMode = null, $lockVersion = null)
- * @method Profil|null findOneBy(array $criteria, array $orderBy = null)
- * @method Profil[]    findAll()
- * @method Profil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class CommentRepository
+ * @package App\Repository\Middle
  */
-class TailorRepository extends ServiceEntityRepository
+class DesignItemRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Tailor::class);
+        parent::__construct($registry, DesignItem::class);
     }
 
 //    /**

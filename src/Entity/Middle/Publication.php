@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Publication
  * @package App\Entity\Middle
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Middle\PublicationRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"publication" = "Publication", "shooting" = "Shooting", "design" = "Design", "item" = "Item"})
@@ -64,10 +64,18 @@ class Publication
     protected $medias;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=false, unique=false)
+     */
+    protected $creationDate;
+
+    /**
      * Publication constructor.
      */
     public function __construct()
     {
+        $this->creationDate = new \DateTime('now');
         $this->medias = new ArrayCollection();
     }
 
@@ -174,4 +182,42 @@ class Publication
         $this->medias = $medias;
         return $this;
     }
+
+    /**
+     * @return Visibility
+     */
+    public function getVisibility(): Visibility
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param Visibility $visibility
+     * @return Publication
+     */
+    public function setVisibility(Visibility $visibility): Publication
+    {
+        $this->visibility = $visibility;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param \DateTime $creationDate
+     * @return Publication
+     */
+    public function setCreationDate(\DateTime $creationDate): Publication
+    {
+        $this->creationDate = $creationDate;
+        return $this;
+    }
+
+
 }

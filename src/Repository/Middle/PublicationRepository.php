@@ -2,6 +2,7 @@
 
 namespace App\Repository\Middle;
 
+use App\Entity\Middle\Publication;
 use App\Entity\Security\Profil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -14,7 +15,7 @@ class PublicationRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Profil::class);
+        parent::__construct($registry, Publication::class);
     }
 
 //    /**
@@ -45,4 +46,24 @@ class PublicationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param \DateTime|null $dateTime
+     * @param int $count
+     * @return mixed
+     */
+    public function findAllFrom(\DateTime $dateTime = null, int $count = 20)
+    {
+        $queryBuilder  = $this->createQueryBuilder('p')
+            ->setMaxResults($count)
+            ->orderBy('p.creationDate', 'DESC')
+        ;
+        if($dateTime){
+            $queryBuilder->andWhere('p.creationDate = :datetime')
+                ->setParameter('datetime', $dateTime);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
 }

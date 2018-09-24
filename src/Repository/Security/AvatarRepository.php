@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Admin;
+namespace App\Repository\Security;
 
-use App\Entity\Admin\Tailor;
+use App\Entity\Security\Avatar;
 use App\Entity\Security\Profil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -13,11 +13,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Profil[]    findAll()
  * @method Profil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TailorRepository extends ServiceEntityRepository
+class AvatarRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Tailor::class);
+        parent::__construct($registry, Avatar::class);
     }
 
 //    /**

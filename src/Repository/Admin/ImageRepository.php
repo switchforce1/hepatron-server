@@ -2,7 +2,10 @@
 
 namespace App\Repository\Admin;
 
+use App\Entity\Admin\Image;
+use App\Entity\Admin\Member;
 use App\Entity\Security\Profil;
+use App\Entity\Security\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -16,7 +19,7 @@ class ImageRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Profil::class);
+        parent::__construct($registry, Image::class);
     }
 
 //    /**
@@ -47,4 +50,35 @@ class ImageRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function findByUser(User $user)
+    {
+        $queryBuilder = $this->createQueryBuilder('i')
+            ->leftJoin('i.publication', 'p')
+            ->leftJoin('p.subscriber', 's')
+            ->andWhere('s.user = :user')
+            ->setParameter('user', $user)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param Member $member
+     * @return mixed
+     */
+    public function findByMember(Member $member)
+    {
+        $queryBuilder = $this->createQueryBuilder('i')
+            ->leftJoin('i.publication', 'p')
+            ->andWhere('p.subscriber = :member')
+            ->setParameter('member', $member)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

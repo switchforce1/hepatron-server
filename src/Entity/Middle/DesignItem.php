@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class AdvicedItemDesign
  * @package App\Entity\Middle
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Middle\DesignItemRepository")
  */
 class DesignItem
 {

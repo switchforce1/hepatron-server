@@ -8,14 +8,25 @@
 
 namespace App\Entity\Middle;
 
+use App\Entity\Admin\Mannequin;
+use App\Entity\Admin\Subscriber;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Shooting
  * @package App\Entity\Middle
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Middle\ShootingRepository")
  */
 class Shooting extends Publication
 {
+    /**
+     * @param Subscriber $subscriber
+     * @return Publication
+     */
+    public function setSubscriber(Subscriber $subscriber): Publication
+    {
+        return parent::setSubscriber($subscriber);
+    }
+
 
 }

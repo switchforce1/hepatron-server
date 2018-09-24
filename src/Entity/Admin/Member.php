@@ -26,7 +26,7 @@ class Member
     protected $user;
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {

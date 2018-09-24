@@ -2,6 +2,7 @@
 
 namespace App\Repository\Middle;
 
+use App\Entity\Middle\Notice;
 use App\Entity\Security\Profil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -14,7 +15,7 @@ class NoticeRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Profil::class);
+        parent::__construct($registry, Notice::class);
     }
 
 //    /**

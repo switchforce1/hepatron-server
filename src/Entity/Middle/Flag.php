@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Flag (Representation en emojis)
  * @package App\Entity\Middle
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Middle\FlagRepository")
  */
 class Flag
 {

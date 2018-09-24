@@ -9,6 +9,7 @@
 namespace App\Helper\Middle;
 
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class FileHelper
@@ -43,5 +44,30 @@ class FileHelper
     public function getProjetDir()
     {
         return $this->kernel->getProjectDir();
+    }
+
+    /**
+     * @param UploadedFile $uploadedFile
+     * @param string $directory
+     * @param string $fileName
+     * @return bool
+     */
+    public function saveUploadedFile(UploadedFile $uploadedFile, string $directory, string $fileName = "" )
+    {
+        try{
+            if($fileName == ""){
+                $fileName = $uploadedFile->getClientOriginalName().$uploadedFile->getExtension();
+            }
+
+            $uploadedFile->move(
+                $directory,
+                $fileName
+            );
+            return true;
+        }catch (\Exception $exception){
+            return false;
+        }
+
+
     }
 }

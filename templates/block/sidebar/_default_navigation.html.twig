@@ -15,6 +15,47 @@
             <li><a href="{{ path('security_user_index') }}"><i class="fa fa-users"></i> Users</a></li>
         </ul>
     </li>
+    <li class="header">Publication</li>
+    <li>
+        <a href="{{ path('front_publication_all') }}">
+            <i class="fa fa-picture-o"></i><span>Toutes</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">16</small>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('front_publication_styles') }}">
+            <i class="fa fa-image"></i><span>Modèles</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">16</small>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('front_publication_creations') }}">
+            <i class="fa fa-image"></i><span>Creations</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">16</small>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('front_publication_products') }}">
+            <i class="fa fa-image"></i><span>Articles</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">16</small>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('front_publication_events') }}">
+            <i class="fa fa-address-card-o"></i> <span>Evenements</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">16</small>
+            </span>
+        </a>
+    </li>
     {#<li>
         <a href="../mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
@@ -58,7 +99,7 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
         </ul>
     </li>#}
-    <li><a href="#"><i class="fa fa-book"></i> <span>Informations</span></a></li>
+    <li class="header"><i class="fa fa-book"></i> <span>Informations</span></li>
     <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Documentation</span></a></li>
     <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>All about</span></a></li>
 </ul>

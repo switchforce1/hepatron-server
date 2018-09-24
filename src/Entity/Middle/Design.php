@@ -8,13 +8,15 @@
 
 namespace App\Entity\Middle;
 
+use App\Entity\Admin\Subscriber;
+use App\Entity\Admin\Tailor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Design
  * @package App\Entity\Middle
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Middle\DesignRepository")
  */
 class Design extends Publication
 {
@@ -31,6 +33,15 @@ class Design extends Publication
     public function __construct()
     {
         $this->designItems = new ArrayCollection();
+    }
+
+    /**
+     * @param Subscriber $subscriber
+     * @return Publication
+     */
+    public function setSubscriber(Subscriber $subscriber): Publication
+    {
+        return parent::setSubscriber($subscriber);
     }
 
 
