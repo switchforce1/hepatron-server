@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Item{% endblock %}
+
+{% block body %}
+    <h1>Create new Item</h1>
+
+    {{ include('middle_item/_form.html.twig') }}
+
+    <a href="{{ path('middle_item_index') }}">back to list</a>
+{% endblock %}

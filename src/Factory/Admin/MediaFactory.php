@@ -9,7 +9,10 @@
 namespace App\Factory\Admin;
 
 
-use App\Helper\Middle\FileHelper;
+use App\Entity\Admin\Media;
+use App\Entity\Admin\Subscriber;
+use App\Entity\Middle\Publication;
+use App\Helper\Generic\FileHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -44,20 +47,32 @@ Abstract class MediaFactory
 
     /**
      * @param UploadedFile $uploadedFile
+     * @param Subscriber $subscriber
+     * @param Publication $publication
+     * @param string $relativeDirectory
+     * @param string $fullFileName
+     * @return Media|null
      */
-    public function create(UploadedFile $uploadedFile, Publication $publication, string $diectory)
+    public function create(UploadedFile $uploadedFile, Subscriber $subscriber,Publication $publication, string $relativeDirectory, string $fullFileName)
     {
+        /** @var Media $media */
         $media  = self::init();
 
 
-    }
+        /** @var string $fullDirectory */
+        $fullDirectory = $this->fileHelper->getMediaDirectory().DIRECTORY_SEPARATOR.$relativeDirectory;
 
-    /**
-     * @param UploadedFile $uploadedFile
-     * @param $directory
-     */
-    protected  function saveFile(UploadedFile $uploadedFile, $directory)
-    {
+        $isSaved = $this->fileHelper->saveUploadedFile($uploadedFile, $fullDirectory, $fullFileName);
 
+        //if file saving failed
+        if(!$isSaved){
+            return null;
+        }
+
+        $media->setRelativePath($relativeDirectory.DIRECTORY_SEPARATOR.$fullFileName);
+        $media->setPublication($publication);
+        $media->setSubscriber($subscriber);
+
+        return $media;
     }
 }

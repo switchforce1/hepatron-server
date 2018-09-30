@@ -6,7 +6,7 @@
  * Time: 20:32
  */
 
-namespace App\Helper\Middle;
+namespace App\Helper\Generic;
 
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -22,12 +22,19 @@ class FileHelper
     private $kernel;
 
     /**
+     * @var string
+     */
+    protected $mediaDirectory;
+
+    /**
      * FileHelper constructor.
      * @param KernelInterface $kernel
+     * @param $mediaDirectory
      */
-    public function __construct(KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel,$mediaDirectory)
     {
         $this->kernel = $kernel;
+        $this->mediaDirectory = $mediaDirectory;
     }
 
     /**
@@ -44,6 +51,14 @@ class FileHelper
     public function getProjetDir()
     {
         return $this->kernel->getProjectDir();
+    }
+
+    /**
+     *
+     */
+    public function getMediaDirectory()
+    {
+        return $this->mediaDirectory;
     }
 
     /**

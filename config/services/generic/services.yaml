@@ -1,0 +1,10 @@
+services:
+    App\Helper\Generic\FileHelper:
+        public: true
+        arguments:
+            $kernel: "@kernel"
+            $mediaDirectory: "%media_directory%"
+
+    app.generic.file_helper:
+        alias: App\Helper\Generic\FileHelper
+        public: true

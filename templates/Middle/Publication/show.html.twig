@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block content %}
+    <h1>Publication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publication.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ publication.label }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ publication.description }}</td>
+            </tr>
+            <tr>
+                <th>CreationDate</th>
+                <td>{{ publication.creationDate ? publication.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('middle_publication_index') }}">back to list</a>
+
+    <a href="{{ path('middle_publication_edit', {'id': publication.id}) }}">edit</a>
+
+    {{ include('Middle/Publication/_delete_form.html.twig') }}
+{% endblock %}

@@ -9,8 +9,8 @@
 namespace App\DataLoader;
 
 
-use App\Helper\Middle\CsvHelper;
-use App\Helper\Middle\FileHelper;
+use App\Helper\Generic\CsvHelper;
+use App\Helper\Generic\FileHelper;
 use phpDocumentor\Reflection\Types\Boolean;
 
 abstract class DataLoader implements  LoaderInterface

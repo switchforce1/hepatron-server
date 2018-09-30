@@ -108,7 +108,7 @@ class Publication
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -126,7 +126,7 @@ class Publication
     /**
      * @return Subscriber
      */
-    public function getSubscriber(): Subscriber
+    public function getSubscriber(): ?Subscriber
     {
         return $this->subscriber;
     }
@@ -144,7 +144,7 @@ class Publication
     /**
      * @return ArrayCollection
      */
-    public function getMedias(): ArrayCollection
+    public function getMedias(): ?ArrayCollection
     {
         return $this->medias;
     }
@@ -186,7 +186,7 @@ class Publication
     /**
      * @return Visibility
      */
-    public function getVisibility(): Visibility
+    public function getVisibility(): ?Visibility
     {
         return $this->visibility;
     }
@@ -204,7 +204,7 @@ class Publication
     /**
      * @return \DateTime
      */
-    public function getCreationDate(): \DateTime
+    public function getCreationDate(): ?\DateTime
     {
         return $this->creationDate;
     }

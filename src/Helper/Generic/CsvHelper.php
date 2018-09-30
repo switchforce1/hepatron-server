@@ -6,7 +6,7 @@
  * Time: 20:32
  */
 
-namespace App\Helper\Middle;
+namespace App\Helper\Generic;
 
 
 class CsvHelper

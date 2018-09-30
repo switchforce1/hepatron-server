@@ -8,19 +8,23 @@
 
 namespace App\Entity\Admin;
 
+use App\Entity\Middle\Publication;
 use Doctrine\ORM\Mapping as ORM;
+use http\Exception\BadQueryStringException;
 
 /**
  * Class BaseFile
  * @package App\Entity\Admin
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Admin\MediaRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"media" = "Media", "image" = "Image", "video" = "Video"})
  */
 class Media extends BaseFile
 {
+    const DEFAULT_WIDTH = 100;
+    const DEFAULT_HEIGHT = 100;
     /**
      * @var int
      * @ORM\Id()
@@ -32,12 +36,14 @@ class Media extends BaseFile
     /**
      * The default width in pixel
      * @var float
+     * @ORM\Column(type="float", name = "default_width")
      */
     protected $defaultWidth;
 
     /**
      * The default heigth in pixel
      * @var float
+     * @ORM\Column(type="float", name="default_heigth")
      */
     protected $defaultHeigth;
 
@@ -50,12 +56,30 @@ class Media extends BaseFile
     protected $subscriber;
 
     /**
-     * @var Subscriber
+     * @var Publication
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Middle\Publication", inversedBy="medias")
      * @ORM\JoinColumn(name="publication_id", nullable=true)
      */
     protected $publication;
+
+    /**
+     * Path from media principal directory
+     * @var string
+     * @ORM\Column(type="string", name="relative_path")
+     */
+    protected $relativePath;
+
+    /**
+     * Media constructor.
+     */
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime('now');
+        $this->defaultWidth = self::DEFAULT_WIDTH;
+        $this->defaultHeigth = self::DEFAULT_HEIGHT;
+    }
+
 
     /**
      * @return int
@@ -122,18 +146,36 @@ class Media extends BaseFile
     /**
      * @return Subscriber
      */
-    public function getPublication(): Subscriber
+    public function getPublication(): Publication
     {
         return $this->publication;
     }
 
     /**
-     * @param Subscriber $publication
+     * @param Publication $publication
      * @return Media
      */
-    public function setPublication(Subscriber $publication): Media
+    public function setPublication(Publication $publication): Media
     {
         $this->publication = $publication;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelativePath(): string
+    {
+        return $this->relativePath;
+    }
+
+    /**
+     * @param string $relativePath
+     * @return Media
+     */
+    public function setRelativePath(string $relativePath): Media
+    {
+        $this->relativePath = $relativePath;
         return $this;
     }
 }

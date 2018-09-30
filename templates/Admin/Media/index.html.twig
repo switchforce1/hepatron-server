@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Media index{% endblock %}
+
+{% block content %}
+    <h1>Media index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DefaultWidth</th>
+                <th>DefaultHeigth</th>
+                <th>RelativePath</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>CreationDate</th>
+                <th>UpdateDate</th>
+                <th>FilePath</th>
+                <th>Detail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medium in media %}
+            <tr>
+                <td>{{ medium.id }}</td>
+                <td>{{ medium.defaultWidth }}</td>
+                <td>{{ medium.defaultHeigth }}</td>
+                <td>{{ medium.relativePath }}</td>
+                <td>{{ medium.name }}</td>
+                <td>{{ medium.description }}</td>
+                <td>{{ medium.creationDate ? medium.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ medium.updateDate ? medium.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ medium.filePath }}</td>
+                <td>{{ medium.detail ? medium.detail|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_media_show', {'id': medium.id}) }}">show</a>
+                    <a href="{{ path('admin_media_edit', {'id': medium.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_media_new') }}">Create new</a>
+{% endblock %}

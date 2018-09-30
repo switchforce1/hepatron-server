@@ -11,8 +11,8 @@ namespace App\DataLoader\Security;
 use App\DataLoader\DataLoader;
 use App\DataLoader\LoaderInterface;
 use App\Entity\Security\Profil;
-use App\Helper\Middle\CsvHelper;
-use App\Helper\Middle\FileHelper;
+use App\Helper\Generic\CsvHelper;
+use App\Helper\Generic\FileHelper;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
