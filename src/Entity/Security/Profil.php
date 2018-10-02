@@ -11,6 +11,14 @@ use App\Model\security\RollableInterface;
  */
 class Profil
 {
+    const CODE_VISITOR = 'VISITOR';
+    const CODE_SELLER = 'SELLER';
+    const CODE_TAILOR = 'TAILOR';
+    const CODE_MANNEQUIN = 'MANNEQUIN';
+    const CODE_EVENT_MAKER = 'EVENT_MAKER';
+    const CODE_ADMINISTRATOR = 'ADMINISTRATOR';
+    const CODE_SUPER_ADMINISTRATOR = 'SUPER_ADMINISTRATOR';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

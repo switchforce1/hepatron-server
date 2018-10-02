@@ -9,6 +9,7 @@
 namespace App\Handler\Admin;
 
 use App\Entity\Admin\Member;
+use App\Entity\Security\Profil;
 use App\Entity\Security\User;
 use App\Helper\Security\UserHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -111,4 +112,52 @@ class MemberHandler
         return $currentMember;
 
     }
+
+    /**
+     * @param Member $member
+     * @return bool
+     */
+    public function memberIsSeller(Member $member)
+    {
+        return $this->userHelper->userIsSeller($member->getUser());
+    }
+
+    /**
+     * @param Member $member
+     * @return bool
+     */
+    public function memberIsTailor(Member $member)
+    {
+        return $this->userHelper->userIsTailor($member->getUser());
+    }
+
+    /**
+     * @param Member $member
+     * @return bool
+     */
+    public function memberIsVisitor(Member $member)
+    {
+        return $this->userHelper->userIsVisitor($member->getUser());
+    }
+
+    /**
+     * @param Member $member
+     * @return bool
+     */
+    public function memberIsEventMaker(Member $member)
+    {
+        return $this->userHelper->userIsEventMaker($member->getUser());
+    }
+
+    /**
+     * @param Member $member
+     * @return bool
+     */
+    public function memberIsMannequin(Member $member)
+    {
+        return $this->userHelper->userIsMannequin($member->getUser());
+    }
+
+
+
 }

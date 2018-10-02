@@ -52,4 +52,69 @@ class UserHelper
 
         return $user;
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsSeller(User $user)
+    {
+        $profil = $user->getProfil();
+        if(!$profil->getCode() == Profil::CODE_SELLER){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsTailor(User $user)
+    {
+        $profil = $user->getProfil();
+        if(!$profil->getCode() == Profil::CODE_TAILOR){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsVisitor(User $user)
+    {
+        $profil = $user->getProfil();
+        if(!$profil->getCode() == Profil::CODE_VISITOR){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsEventMaker(User $user)
+    {
+        $profil = $user->getProfil();
+        if(!$profil->getCode() == Profil::CODE_EVENT_MAKER){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsMannequin(User $user)
+    {
+        $profil = $user->getProfil();
+        if(!$profil->getCode() == Profil::CODE_MANNEQUIN){
+            return false;
+        }
+        return true;
+    }
 }

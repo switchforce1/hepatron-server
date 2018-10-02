@@ -9,7 +9,7 @@
 namespace App\Factory\Middle;
 
 
-class PublicationFactory
+class DesignBuilder extends PublicationBuilder
 {
 
 }

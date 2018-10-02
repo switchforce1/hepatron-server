@@ -31,11 +31,18 @@ class MediaType extends AbstractType
             ->add('defaultWidth')
             ->add('defaultHeight')
             ->add('file', FileType::class, [
-                'label'=> 'Selectionner un fichier'
+                'label'=> 'Selectionner un fichier',
+                'attr'=>[
+                    'accept'=>'image/*'
+                ],
             ])
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     *
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
