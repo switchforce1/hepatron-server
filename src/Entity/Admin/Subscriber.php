@@ -15,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"subscriber" = "Subscriber", "mannequin" = "Mannequin", "tailor" = "Tailor", "seller" = "Seller"})
+ * @ORM\DiscriminatorMap({"subscriber" = "Subscriber", "mannequin" = "Mannequin",
+ *      "tailor" = "Tailor", "seller" = "Seller", "event_maker" = "EventMaker"})
  */
 class Subscriber extends Member
 {
@@ -92,5 +93,11 @@ class Subscriber extends Member
         return $this;
     }
 
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->id;
+    }
 }

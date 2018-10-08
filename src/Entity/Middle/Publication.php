@@ -20,7 +20,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\Middle\PublicationRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"publication" = "Publication", "shooting" = "Shooting", "design" = "Design", "item" = "Item"})
+ * @ORM\DiscriminatorMap({"publication" = "Publication", "shooting" = "Shooting",
+ *     "design" = "Design", "item" = "Item", "event" = "Event"})
  */
 class Publication
 {

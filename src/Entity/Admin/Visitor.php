@@ -34,5 +34,11 @@ class Visitor extends Member
         return $this->id;
     }
 
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->id;
+    }
 }

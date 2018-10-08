@@ -59,4 +59,12 @@ class Mannequin extends Subscriber
         $this->partnership = $partnership;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id;
+    }
 }

@@ -43,19 +43,19 @@ class MemberHandler
 
 
     /**
-     *
+     * @throws \Exception
      */
     public function getImages()
     {
-
+        throw  new \Exception('NO content yet');
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function getPublications()
     {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+        throw  new \Exception('NO content yet');
     }
 
     /**
@@ -65,7 +65,13 @@ class MemberHandler
      */
     public function getMemberOfUser(User $user)
     {
-        $member = $this->entityManager->getRepository(Member::class)->findOneBy([
+        $memberClass = $this->userHelper->getMemberClassFor($user);
+
+        if(!$memberClass){
+            return null;
+        }
+
+        $member = $this->entityManager->getRepository($memberClass)->findOneBy([
            'user'=> $user,
         ]);
 
@@ -158,6 +164,48 @@ class MemberHandler
         return $this->userHelper->userIsMannequin($member->getUser());
     }
 
+
+    /**
+     * @param User $user
+     * @return Member
+     * @throws \Exception
+     */
+    public function generateMember(User $user)
+    {
+        if($this->getMemberOfUser($user)!=null){
+            throw new \Exception("The user has already one mamber");
+        }
+
+        $memberClass = $this->userHelper->getMemberClassFor($user);
+
+        if(!$memberClass){
+            throw new \Exception("Unknown profil for this user");
+        }
+
+        /** @var Member $newMember */
+        $newMember = new $memberClass();
+        $newMember->setUser($user);
+
+        return $newMember;
+    }
+
+    /**
+     * @param User $user
+     * @return Member
+     * @throws \Exception
+     */
+    public function createNewMember(User $user)
+    {
+        try{
+            $member = $this->generateMember($user);
+            $this->entityManager->persist($member);
+            $this->entityManager->flush();
+        }catch (\Exception $exception){
+            throw new \Exception($exception->getMessage());
+        }
+
+        return $member;
+    }
 
 
 }

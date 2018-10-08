@@ -2,8 +2,12 @@
 
 namespace App\Controller\Middle;
 
+use App\Builder\Middle\PublicationBuilder;
+use App\Entity\Admin\Member;
 use App\Entity\Middle\Publication;
 use App\Form\Middle\PublicationType;
+use App\Handler\Admin\MemberHandler;
+use App\Handler\Middle\PublicationHandler;
 use App\Repository\Middle\PublicationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +29,24 @@ class PublicationController extends Controller
 
     /**
      * @Route("/new", name="middle_publication_new", methods="GET|POST")
+     *
+     * @param Request $request
+     * @param MemberHandler $memberHandler
+     * @param PublicationHandler $publicationHandler
+     * @return Response
+     * @throws \Exception
      */
-    public function new(Request $request): Response
+    public function new(Request $request,
+                        MemberHandler $memberHandler,
+                        PublicationHandler $publicationHandler): Response
     {
-        $publication = new Publication();
+        $user = $this->getUser();
+        /** @var Member $member */
+        $member = $memberHandler->getMemberOfUser($user);
+
+        $publication = $publicationHandler->createPublicationFor($member);
+
+
         $form = $this->createForm(PublicationType::class, $publication);
         $form->handleRequest($request);
 

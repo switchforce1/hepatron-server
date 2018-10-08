@@ -11,18 +11,19 @@ namespace App\Entity\Admin;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Seller
+ * Class EventMaker
  * @package App\Entity\Admin
- * @ORM\Entity(repositoryClass="App\Repository\Admin\SellerRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Admin\EventMakerRepository")
  */
-class Seller extends Subscriber
+class EventMaker extends Subscriber
 {
     /**
      * @return string
      */
     public function __toString()
     {
-        return (string)$this->id;
+       return (string)$this->id;
     }
+
 
 }

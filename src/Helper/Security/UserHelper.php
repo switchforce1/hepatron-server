@@ -9,6 +9,12 @@
 namespace App\Helper\Security;
 
 
+use App\Entity\Admin\EventMaker;
+use App\Entity\Admin\Mannequin;
+use App\Entity\Admin\Seller;
+use App\Entity\Admin\Tailor;
+use App\Entity\Admin\Visitor;
+use App\Entity\Security\Profil;
 use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -54,13 +60,45 @@ class UserHelper
     }
 
     /**
+     * Returns the class full name of the related member
+     *
+     * @param User $user
+     * @return null|string
+     */
+    public function getMemberClassFor(User $user)
+    {
+        if($this->userIsEventMaker($user)){
+            dump($user);
+            return EventMaker::class;
+        }
+
+        if ($this->userIsVisitor($user)){
+            return Visitor::class;
+        }
+
+        if ($this->userIsSeller($user)){
+            return Seller::class;
+        }
+
+        if ($this->userIsTailor($user)){
+            return Tailor::class;
+        }
+
+        if ($this->userIsMannequin($user)){
+            return Mannequin::class;
+        }
+
+        return null;
+    }
+
+    /**
      * @param User $user
      * @return bool
      */
     public function userIsSeller(User $user)
     {
         $profil = $user->getProfil();
-        if(!$profil->getCode() == Profil::CODE_SELLER){
+        if($profil->getCode() != Profil::CODE_SELLER){
             return false;
         }
         return true;
@@ -73,7 +111,7 @@ class UserHelper
     public function userIsTailor(User $user)
     {
         $profil = $user->getProfil();
-        if(!$profil->getCode() == Profil::CODE_TAILOR){
+        if($profil->getCode() != Profil::CODE_TAILOR){
             return false;
         }
         return true;
@@ -86,7 +124,7 @@ class UserHelper
     public function userIsVisitor(User $user)
     {
         $profil = $user->getProfil();
-        if(!$profil->getCode() == Profil::CODE_VISITOR){
+        if($profil->getCode() != Profil::CODE_VISITOR){
             return false;
         }
         return true;
@@ -99,7 +137,7 @@ class UserHelper
     public function userIsEventMaker(User $user)
     {
         $profil = $user->getProfil();
-        if(!$profil->getCode() == Profil::CODE_EVENT_MAKER){
+        if($profil->getCode() != Profil::CODE_EVENT_MAKER){
             return false;
         }
         return true;
@@ -112,7 +150,7 @@ class UserHelper
     public function userIsMannequin(User $user)
     {
         $profil = $user->getProfil();
-        if(!$profil->getCode() == Profil::CODE_MANNEQUIN){
+        if($profil->getCode() != Profil::CODE_MANNEQUIN){
             return false;
         }
         return true;

@@ -11,6 +11,7 @@ namespace App\Builder\Middle;
 
 use App\Entity\Admin\Media;
 use App\Entity\Middle\Publication;
+use App\Model\Admin\MediaFormModel;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class PublicationBuilder
@@ -23,11 +24,13 @@ class PublicationBuilder
     /**
      * Initialisation des medias d'une publication
      *
+     *
+     * @param Publication $publicationint
      * @param int $maxMediaCount
      * @return ArrayCollection
      * @throws \Exception
      */
-    public function getInitMedias(int $maxMediaCount = self::MAX_MeDIA_COUNT, Publication $publication)
+    public function getInitMedias(Publication $publication, int $maxMediaCount = self::MAX_MeDIA_COUNT)
     {
         //Init arayCollection
         $medias = new ArrayCollection();
@@ -37,12 +40,12 @@ class PublicationBuilder
         }
 
         for ($count = 0; $count < $maxMediaCount ; $count ++){
-            $media = new Media();
+            $media = new MediaFormModel();
 
-            $media->setPublication($publication);
+            //$media->setPublication($publication);
             $medias->add(clone ($media));
 
-            unset($medias);
+            unset($media);
         }
 
         return $medias;
@@ -51,6 +54,7 @@ class PublicationBuilder
     /**
      * @param string $subClassFullName
      * @return Publication|null
+     * @throws \Exception
      */
     public function createPublication(string $subClassFullName)
     {
@@ -67,13 +71,14 @@ class PublicationBuilder
 
         //recuperation des medias
         try {
-            $medias = $this->getInitMedias();
+            $medias = $this->getInitMedias($publication);
         } catch (\Exception $exception) {
-            return null;
+            throw new \Exception($exception->getMessage());
         }
 
         //Assignation des medias
         $publication->setMedias($medias);
 
+        return $publication;
     }
 }

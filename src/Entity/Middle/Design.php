@@ -20,7 +20,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Design extends Publication
 {
-
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Middle\DesignItem", mappedBy="design")

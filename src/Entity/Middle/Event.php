@@ -23,7 +23,7 @@ class Event extends Publication
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", name="end_date")
+     * @ORM\Column(type="datetime", name="start_date")
      */
     protected $startDate;
 

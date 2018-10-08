@@ -13,6 +13,7 @@ use App\Builder\Middle\PublicationBuilder;
 use App\Entity\Admin\Member;
 use App\Entity\Middle\Design;
 use App\Entity\Middle\Event;
+use App\Entity\Middle\Publication;
 use App\Entity\Middle\Shooting;
 use App\Handler\Admin\MemberHandler;
 use Doctrine\ORM\EntityManager;
@@ -82,16 +83,19 @@ class PublicationHandler
 
     /**
      * @param Member $member
-     * @return \App\Entity\Middle\Publication|null
+     * @return Publication|null
+     * @throws \Exception
      */
     public function createPublicationFor(Member $member)
     {
         $publicationFullClassName = $this->getPublicationFullClassName($member);
-
         if(!$publicationFullClassName){
             return null;
         }
 
-        return $this->publicationBuilder->createPublication($publicationFullClassName);
+        /** @var Publication $publication */
+        $publication =  $this->publicationBuilder->createPublication($publicationFullClassName);
+
+        return $publication;
     }
 }

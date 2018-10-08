@@ -57,4 +57,12 @@ class Tailor extends Subscriber
         $this->partnership = $partnership;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->id;
+    }
 }
