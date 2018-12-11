@@ -6,6 +6,7 @@ use App\Entity\Admin\Media;
 use App\Model\Admin\MediaFormModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,8 +29,18 @@ class MediaType extends AbstractType
         ;*/
 
         $builder
-            ->add('defaultWidth')
-            ->add('defaultHeight')
+            /*>add('defaultWidth', TextType::class, array(
+                'label'=> false,
+                "attr" => array(
+                    'hidden'=>true
+                )
+            ))
+            ->add('defaultHeight', TextType::class, array(
+                'label'=> false,
+                "attr" => array(
+                    'hidden'=>true
+                )
+            ))*/
             ->add('file', FileType::class, [
                 'label'=> 'Selectionner un fichier',
                 'attr'=>[
@@ -47,6 +58,7 @@ class MediaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => MediaFormModel::class,
+            'mapped' =>false
         ]);
     }
 }

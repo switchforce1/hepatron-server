@@ -9,10 +9,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Profil|null find($id, $lockMode = null, $lockVersion = null)
- * @method Profil|null findOneBy(array $criteria, array $orderBy = null)
- * @method Profil[]    findAll()
- * @method Profil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EventMaker|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EventMaker|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EventMaker[]    findAll()
+ * @method EventMaker[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class EventMakerRepository extends ServiceEntityRepository
 {
@@ -22,7 +22,7 @@ class EventMakerRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Profil[] Returns an array of Profil objects
+//     * @return EventMaker[] Returns an array of EventMaker objects
 //     */
     /*
     public function findByExampleField($value)
@@ -39,7 +39,7 @@ class EventMakerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Profil
+    public function findOneBySomeField($value): ?EventMaker
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

@@ -3,6 +3,7 @@
 namespace App\Controller\Middle;
 
 use App\Entity\Middle\Design;
+use App\Factory\Middle\DesignFactory;
 use App\Form\Middle\DesignType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +30,12 @@ class DesignController extends Controller
     /**
      * @Route("/new", name="middle_design_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, DesignFactory $designFactory): Response
     {
-        $design = new Design();
-        $form = $this->createForm(DesignType::class, $design);
+        $design = $designFactory->create();
+        $form = $this->createForm(DesignType::class, $design, array(
+            "action" => $this->generateUrl('middle_design_new')
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,6 +44,8 @@ class DesignController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('middle_design_index');
+        }elseif ($form->isSubmitted() && !$form->isValid()){
+            dump($form->getErrors());
         }
 
         return $this->render('Middle/Design/new.html.twig', [
