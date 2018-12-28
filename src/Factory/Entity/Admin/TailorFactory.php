@@ -6,7 +6,7 @@
  * Time: 23:15
  */
 
-namespace App\Factory\Admin;
+namespace App\Factory\Entity\Admin;
 
 
 use App\Factory\AbstractFactory;

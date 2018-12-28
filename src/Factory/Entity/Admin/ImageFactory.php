@@ -6,7 +6,7 @@
  * Time: 01:36
  */
 
-namespace App\Factory\Admin;
+namespace App\Factory\Entity\Admin;
 
 
 use App\Entity\Admin\Image;

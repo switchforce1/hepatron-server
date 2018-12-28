@@ -6,7 +6,7 @@
  * Time: 18:06
  */
 
-namespace App\Factory\Security;
+namespace App\Factory\Entity\Security;
 
 
 

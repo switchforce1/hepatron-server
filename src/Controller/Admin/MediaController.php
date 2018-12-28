@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Media;
 use App\Form\Admin\MediaType;
-use App\Model\Admin\MediaFormModel;
+use App\Model\Admin\MediaDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +32,7 @@ class MediaController extends Controller
      */
     public function new(Request $request): Response
     {
-        $media = new MediaFormModel();
+        $media = new MediaDTO();
         
         $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);

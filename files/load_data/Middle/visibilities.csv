@@ -1,0 +1,5 @@
+code;label;description
+PUBLIC;Public;Visible pour tout le monde
+FOLLOWERS;Abonnés;Visible que pour des abonnés
+PROTECTED;Partenaires;Visible pour des personne du même groupe
+PRIVATE;Exclusivité;Visible que pour des personnes spécifiques

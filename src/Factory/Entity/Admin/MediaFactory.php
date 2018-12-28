@@ -6,7 +6,7 @@
  * Time: 01:35
  */
 
-namespace App\Factory\Admin;
+namespace App\Factory\Entity\Admin;
 
 
 use App\Entity\Admin\Media;

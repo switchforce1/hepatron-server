@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: Dadja
  * Date: 04/08/2018
- * Time: 23:15
+ * Time: 23:14
  */
 
-namespace App\Factory\Admin;
+namespace App\Factory\Entity\Admin;
 
 
 use App\Factory\AbstractFactory;
 
-class MannequinFactory extends AbstractFactory
+class VisitorFactory extends AbstractFactory
 {
 
 }

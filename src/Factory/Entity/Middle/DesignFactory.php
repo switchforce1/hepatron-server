@@ -6,7 +6,7 @@
  * Time: 01:33
  */
 
-namespace App\Factory\Middle;
+namespace App\Factory\Entity\Middle;
 
 
 use App\Entity\Middle\Design;

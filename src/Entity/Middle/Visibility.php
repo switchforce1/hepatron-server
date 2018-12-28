@@ -63,16 +63,6 @@ class Visibility
     }
 
     /**
-     * @param mixed $id
-     * @return Visibility
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getLabel(): string

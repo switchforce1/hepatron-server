@@ -10,6 +10,7 @@ namespace App\Entity\Middle;
 
 use App\Entity\Admin\Media;
 use App\Entity\Admin\Subscriber;
+use App\Entity\EntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,7 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorMap({"publication" = "Publication", "shooting" = "Shooting",
  *     "design" = "Design", "item" = "Item", "event" = "Event"})
  */
-class Publication
+class Publication implements EntityInterface
 {
     /**
      * @ORM\Id()
@@ -60,7 +61,8 @@ class Publication
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Admin\Media", mappedBy="publication")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\Media",
+     *     mappedBy="publication", cascade={"persist"})
      */
     protected $medias;
 
