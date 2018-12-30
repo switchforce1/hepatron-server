@@ -9,13 +9,14 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Class EventMaker
  * @package App\Entity\Admin
  * @ORM\Entity(repositoryClass="App\Repository\Admin\EventMakerRepository")
  */
-class EventMaker extends Subscriber
+class EventMaker extends Subscriber implements EntityInterface
 {
     /**
      * @return string

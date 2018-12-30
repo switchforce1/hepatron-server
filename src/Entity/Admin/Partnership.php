@@ -10,6 +10,7 @@ namespace App\Entity\Admin;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Description of Partnership
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Dadja
  * @ORM\Entity(repositoryClass="App\Repository\Admin\PartnershipRepository")
  */
-class Partnership
+class Partnership implements EntityInterface
 {
     /**
      * @ORM\Id()

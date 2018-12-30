@@ -10,6 +10,7 @@ namespace App\Entity\Middle;
 
 use App\Entity\Admin\Mannequin;
 use App\Entity\Admin\Subscriber;
+use App\Entity\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Middle
  * @ORM\Entity(repositoryClass="App\Repository\Middle\ShootingRepository")
  */
-class Shooting extends Publication
+class Shooting extends Publication implements EntityInterface
 {
     /**
      * @param Subscriber $subscriber

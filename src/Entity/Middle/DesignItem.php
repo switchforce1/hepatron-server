@@ -9,6 +9,7 @@
 namespace App\Entity\Middle;
 
 
+use App\Entity\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Middle
  * @ORM\Entity(repositoryClass="App\Repository\Middle\DesignItemRepository")
  */
-class DesignItem
+class DesignItem implements EntityInterface
 {
 
     /**

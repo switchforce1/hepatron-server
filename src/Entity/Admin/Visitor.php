@@ -9,6 +9,7 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Description of Visitor
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Dadja
  * @ORM\Entity(repositoryClass="App\Repository\Admin\VisitorRepository")
  */
-class Visitor extends Member
+class Visitor extends Member implements EntityInterface
 {
 
     /**

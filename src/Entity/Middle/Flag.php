@@ -8,6 +8,7 @@
 
 namespace App\Entity\Middle;
 
+use App\Entity\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Middle
  * @ORM\Entity(repositoryClass="App\Repository\Middle\FlagRepository")
  */
-class Flag
+class Flag implements EntityInterface
 {
     //Pousse
     const CODE_LIKE = 1;

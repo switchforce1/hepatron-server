@@ -3,7 +3,7 @@
 namespace App\Controller\Middle;
 
 use App\Entity\Middle\Design;
-use App\Factory\Middle\DesignFactory;
+use App\Factory\Entity\Middle\DesignFactory;
 use App\Form\Middle\DesignType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

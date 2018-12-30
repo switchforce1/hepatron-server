@@ -10,6 +10,7 @@ namespace App\Entity\Admin;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * @ORM\Entity
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorMap({"subscriber" = "Subscriber", "mannequin" = "Mannequin",
  *      "tailor" = "Tailor", "seller" = "Seller", "event_maker" = "EventMaker"})
  */
-class Subscriber extends Member
+class Subscriber extends Member implements EntityInterface
 {
     /**
      * @var int

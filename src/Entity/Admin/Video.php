@@ -9,13 +9,14 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Class Video
  * @package App\Entity\Admin
  * @ORM\Entity(repositoryClass="App\Repository\Admin\VideoRepository")
  */
-class Video extends Media
+class Video extends Media implements EntityInterface
 {
 
 }

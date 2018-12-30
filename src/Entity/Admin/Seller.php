@@ -9,13 +9,14 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Class Seller
  * @package App\Entity\Admin
  * @ORM\Entity(repositoryClass="App\Repository\Admin\SellerRepository")
  */
-class Seller extends Subscriber
+class Seller extends Subscriber implements EntityInterface
 {
     /**
      * @return string

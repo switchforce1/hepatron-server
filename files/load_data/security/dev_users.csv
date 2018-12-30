@@ -1,0 +1,9 @@
+login;password;email,profil_code
+tailor;tailor;tailor@hepatron.com;TAILOR
+seller;seller;seller@hepatron.com;SELLER
+eventmaker;eventmaker;eventmaker@hepatron.com;EVENT_MAKER
+visitor;visitor;visitor@hepatron.com;VISITOR
+mannequin;mannequin;mannequin@hepatron.com;MANNEQUIN
+admin;admin;admin@hepatron.com;ADMINISTRATOR
+sadmin;sadmin;sadmin@hepatron.com;SUPER_ADMINISTRATOR
+

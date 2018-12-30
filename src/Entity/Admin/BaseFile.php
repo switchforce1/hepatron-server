@@ -8,6 +8,7 @@
 
 namespace App\Entity\Admin;
 
+use App\Entity\EntityInterface;
 use App\Entity\Security\User;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Admin
  * @ORM\MappedSuperclass
  */
-class BaseFile
+class BaseFile implements EntityInterface
 {
 
     /**

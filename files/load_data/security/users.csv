@@ -1,8 +1,0 @@
-login;password;email,profil_code
-VISITOR;Visiteur;Visiteur
-TAILOR;Couturier;Couturier , tailleur, createur de mode
-SELLER;Vendeur;Vendeur d'articles destinés à la couture
-MANNEQUIN;Manequin;Manequin
-EVENT_MAKER;Organisateur d'évenement;Organisateur d'évenement, pouvant concerner la mode
-ADMINISTRATOR;Administrateur;Administrateur du site
-SUPER_ADMINISTRATOR;Super administrateur;Super administrateur du site (tres technique)

@@ -6,28 +6,30 @@
  * Time: 05:45
  */
 
-namespace App\Command\Middle\LoadData;
+namespace App\Command\Security\LoadData;
 
+use App\DataLoader\Security\DevUserLoader;
 use App\DataLoader\Security\ProfilLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-class LoadProfilCommand extends Command
+class LoadDevUserCommand extends Command
 {
     /**
-     * @var ProfilLoader
+     * @var DevUserLoader
      */
-    private $profilLoader;
+    private $devUserLoader;
 
     /**
-     * LoadRoleCommand constructor.
-     * @param ProfilLoader $profilLoader
+     * LoadProfilCommand constructor.
+     * @param DevUserLoader $devUserLoader
      */
-    public function __construct(ProfilLoader $profilLoader)
+    public function __construct(DevUserLoader $devUserLoader)
     {
         parent::__construct();
-        $this->profilLoader = $profilLoader;
+        $this->devUserLoader = $devUserLoader;
     }
 
 
@@ -38,14 +40,14 @@ class LoadProfilCommand extends Command
     {
         $this
             // the name of the command (the part after "bin/console")
-            ->setName('hepatron:load:profil')
+            ->setName('hepatron:load:user')
 
             // the short description shown while running "php bin/console list"
-            ->setDescription('Load roles in database')
+            ->setDescription('Load users in database')
 
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp('This command allows you to load roles from csv file')
+            ->setHelp('This command allows you to load users from csv file')
         ;
     }
 
@@ -57,8 +59,12 @@ class LoadProfilCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $loadingResult = $this->profilLoader->load();
-
-        $output->write($loadingResult);
+        $io = new SymfonyStyle($input, $output);
+        $io->title('Chargement des utilisateur en mode developpement.');
+        $loadingResult = $this->devUserLoader->load();
+        if(!$loadingResult){
+            $io->error($loadingResult);
+        }
+        $io->success("Chargement éffectué!");
     }
 }

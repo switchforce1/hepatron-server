@@ -11,6 +11,7 @@ namespace App\Entity\Admin;
 use App\Entity\Middle\Publication;
 use Doctrine\ORM\Mapping as ORM;
 use http\Exception\BadQueryStringException;
+use App\Entity\EntityInterface;
 
 /**
  * Class BaseFile
@@ -21,7 +22,7 @@ use http\Exception\BadQueryStringException;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"media" = "Media", "image" = "Image", "video" = "Video"})
  */
-class Media extends BaseFile
+class Media extends BaseFile implements EntityInterface
 {
     const DEFAULT_WIDTH = 100;
     const DEFAULT_HEIGHT = 100;

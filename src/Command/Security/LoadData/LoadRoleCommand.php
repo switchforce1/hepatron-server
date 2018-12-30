@@ -6,7 +6,7 @@
  * Time: 05:45
  */
 
-namespace App\Command\Middle\LoadData;
+namespace App\Command\Security\LoadData;
 
 use App\DataLoader\Security\RoleLoader;
 use Symfony\Component\Console\Command\Command;

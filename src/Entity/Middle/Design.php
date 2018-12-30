@@ -9,7 +9,7 @@
 namespace App\Entity\Middle;
 
 use App\Entity\Admin\Subscriber;
-use App\Entity\Admin\Tailor;
+use App\Entity\EntityInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity\Middle
  * @ORM\Entity(repositoryClass="App\Repository\Middle\DesignRepository")
  */
-class Design extends Publication
+class Design extends Publication implements EntityInterface
 {
     /**
      * @var ArrayCollection

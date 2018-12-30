@@ -59,7 +59,11 @@ abstract class DataLoader implements  LoaderInterface
         }
         foreach ($data as $key => $element){
             if($key > 0){
-                $this->loadElement($element);
+                try{
+                    $this->loadElement($element);
+                }catch (\Exception $exception){
+                    $errors[] = "Une erreur";
+                }
             }
         }
         return true;

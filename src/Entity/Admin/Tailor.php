@@ -9,6 +9,7 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Description of Tailor
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Dadja
  * @ORM\Entity(repositoryClass="App\Repository\Admin\TailorRepository")
  */
-class Tailor extends Subscriber
+class Tailor extends Subscriber implements EntityInterface
 {
     /**
      * @ORM\Id()

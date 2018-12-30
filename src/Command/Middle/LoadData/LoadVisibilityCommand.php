@@ -8,29 +8,28 @@
 
 namespace App\Command\Middle\LoadData;
 
-use App\DataLoader\Security\RoleLoader;
-use App\DataLoader\Security\RolesProfilsLoader;
+use App\DataLoader\Middle\VisibilyLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-class LoadRolesProfilsCommand extends Command
+class LoadVisibilityCommand extends Command
 {
     /**
-     * @var RoleLoader
+     * @var VisibilyLoader
      */
-    private $rolesProfilsLoader;
+    private $visibilityLoader;
 
     /**
-     * LoadRoleProfilCommand constructor.
-     * @param RolesProfilsLoader $roleProfilLoader
+     * LoadVisibilityCommand constructor.
+     * @param VisibilyLoader $visibilityLoader
      */
-    public function __construct(RolesProfilsLoader $rolesProfilsLoader)
+    public function __construct(VisibilyLoader $visibilityLoader)
     {
         parent::__construct();
-        $this->rolesProfilsLoader = $rolesProfilsLoader;
+        $this->visibilityLoader = $visibilityLoader;
     }
-
 
     /**
      * Configurations
@@ -39,14 +38,14 @@ class LoadRolesProfilsCommand extends Command
     {
         $this
             // the name of the command (the part after "bin/console")
-            ->setName('hepatron:load:roleprofil')
+            ->setName('hepatron:load:visibility')
 
             // the short description shown while running "php bin/console list"
-            ->setDescription('Load roles in database')
+            ->setDescription('Load visibilities in database')
 
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp('This command allows you to load roles from csv file')
+            ->setHelp('This command allows you to load visibilities from csv file')
         ;
     }
 
@@ -58,8 +57,12 @@ class LoadRolesProfilsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $loadingResult = $this->rolesProfilsLoader->load();
-
-        $output->write($loadingResult);
+        $io = new SymfonyStyle($input, $output);
+        $io->title('Chargement des visibilés des publications');
+        $loadingResult = $this->visibilityLoader->load();
+        if(!$loadingResult){
+            $io->error($loadingResult);
+        }
+        $io->success("Chargement éffectué!");
     }
 }

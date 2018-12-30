@@ -9,6 +9,7 @@
 namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityInterface;
 
 /**
  * Description of Mannequin
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity(repositoryClass="App\Repository\Admin\MannequinRepository")
  */
-class Mannequin extends Subscriber
+class Mannequin extends Subscriber implements EntityInterface
 {
 
     /**

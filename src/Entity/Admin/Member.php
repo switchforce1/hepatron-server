@@ -10,13 +10,14 @@ namespace App\Entity\Admin;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Security\User;
+use App\Entity\EntityInterface;
 
 /**
  * Class Member
  * @package App\Entity\Admin
  * @ORM\MappedSuperclass
  */
-class Member
+class Member implements EntityInterface
 {
 
     /**
