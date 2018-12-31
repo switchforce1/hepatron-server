@@ -15,22 +15,12 @@ use App\Entity\EntityInterface;
 interface TransformerInterface
 {
     /**
-     * @return EntityInterface
+     * @return mixed
      */
-    public function createEntity();
-
-    /**
-     * @return DTOInterface
-     */
-    public function createDTO();
+    public function transforme(DTOInterface $dto):?EntityInterface;
 
     /**
      * @return mixed
      */
-    public function transforme(DTOInterface $dto);
-
-    /**
-     * @return mixed
-     */
-    public function revert(EntityInterface $entity);
+    public function revert(EntityInterface $entity):?DTOInterface;
 }

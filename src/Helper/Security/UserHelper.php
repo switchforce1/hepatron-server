@@ -68,7 +68,6 @@ class UserHelper
     public function getMemberClassFor(User $user)
     {
         if($this->userIsEventMaker($user)){
-            dump($user);
             return EventMaker::class;
         }
 

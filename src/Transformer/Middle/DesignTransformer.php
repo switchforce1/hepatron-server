@@ -13,17 +13,18 @@ use App\DTO\DTOInterface;
 use App\DTO\Middle\PublicationDTO;
 use App\Entity\EntityInterface;
 use App\Entity\Middle\Publication;
+use App\Factory\Entity\Middle\DesignFactory;
 use App\Factory\Entity\Middle\PublicationFactory;
 use App\Transformer\AbstractTransformer;
 use App\Transformer\Admin\MediaTransformer;
 use App\Transformer\TransformerInterface;
 
-class PublicationTransformer extends AbstractTransformer implements TransformerInterface
+class DesignTransformer extends PublicationTransformer implements TransformerInterface
 {
     /**
-     * @var PublicationFactory
+     * @var DesignFactory
      */
-    protected $publicationFactory;
+    protected $designFactory;
 
     /**
      * @var MediaTransformer
@@ -31,13 +32,13 @@ class PublicationTransformer extends AbstractTransformer implements TransformerI
     protected $mediaTransformer;
 
     /**
-     * PublicationTransformer constructor.
-     * @param PublicationFactory $publicationFactory
+     * DesignTransformer constructor.
+     * @param DesignFactory $designFactory
      * @param MediaTransformer $mediaTransformer
      */
-    public function __construct(PublicationFactory $publicationFactory, MediaTransformer $mediaTransformer)
+    public function __construct(DesignFactory $designFactory, MediaTransformer $mediaTransformer)
     {
-        $this->publicationFactory = $publicationFactory;
+        $this->designFactory = $designFactory;
         $this->mediaTransformer = $mediaTransformer;
     }
 
@@ -48,7 +49,7 @@ class PublicationTransformer extends AbstractTransformer implements TransformerI
      */
     protected function createEntity()
     {
-        return $this->publicationFactory->create();
+        return $this->designFactory->create();
     }
 
     /**
@@ -67,7 +68,7 @@ class PublicationTransformer extends AbstractTransformer implements TransformerI
     public function transforme(DTOInterface $dto):EntityInterface
     {
         /** @var PublicationDTO $dto*/
-        if($dto instanceof PublicationDTO){
+        if($dto instanceof DesignD){
             throw new \Exception("Bad DTO use on Publication transformer");
         }
         /** @var Publication $publication */

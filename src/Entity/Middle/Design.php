@@ -43,5 +43,11 @@ class Design extends Publication implements EntityInterface
         return parent::setSubscriber($subscriber);
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
 }

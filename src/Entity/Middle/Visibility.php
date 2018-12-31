@@ -116,4 +116,12 @@ class Visibility implements EntityInterface
         $this->description = $description;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
 }

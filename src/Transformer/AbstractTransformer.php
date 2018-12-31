@@ -14,7 +14,25 @@ use App\Entity\EntityInterface;
 
 abstract class AbstractTransformer implements TransformerInterface
 {
-    abstract public function transforme(DTOInterface $dto);
+    /**
+     * @param DTOInterface $dto
+     * @return EntityInterface|null
+     */
+    abstract public function transforme(DTOInterface $dto):?EntityInterface;
 
-    abstract public function revert(EntityInterface $entity);
+    /**
+     * @param EntityInterface $entity
+     * @return DTOInterface|null
+     */
+    abstract public function revert(EntityInterface $entity):?DTOInterface;
+
+    /**
+     * @return EntityInterface
+     */
+    abstract protected function createEntity();
+
+    /**
+     * @return DTOInterface
+     */
+    abstract protected function createDTO();
 }

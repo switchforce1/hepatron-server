@@ -27,11 +27,6 @@ class PublicationHandler
     protected $memberHandler;
 
     /**
-     * @var PublicationBuilder
-     */
-    protected $publicationBuilder;
-
-    /**
      * @var EntityManagerInterface
      */
     protected $entityManager;
@@ -40,15 +35,12 @@ class PublicationHandler
      * PublicationHandler constructor.
      * @param MemberHandler $memberHandler
      * @param EntityManagerInterface $entityManager
-     * @param PublicationBuilder $publicationBuilder
      */
     public function __construct(MemberHandler $memberHandler,
-                                EntityManagerInterface $entityManager,
-                                PublicationBuilder $publicationBuilder)
+                                EntityManagerInterface $entityManager)
     {
         $this->memberHandler = $memberHandler;
         $this->entityManager = $entityManager;
-        $this->publicationBuilder = $publicationBuilder;
     }
 
 
