@@ -18,6 +18,7 @@ class MediaType extends AbstractType
         $builder
             ->add('file', FileType::class, [
                 'label'=> 'Selectionner un fichier',
+                'required' => false,
                 'attr'=>[
                     'accept'=>'image/*'
                 ],

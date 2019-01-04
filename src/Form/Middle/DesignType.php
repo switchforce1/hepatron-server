@@ -2,6 +2,7 @@
 
 namespace App\Form\Middle;
 
+use App\DTO\Middle\DesignDTO;
 use App\Entity\Middle\Design;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,11 +16,7 @@ class DesignType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('label')
-            ->add('description')
-            ->add('subscriber')
-        ;
+        $builder;
     }
 
     /**
@@ -28,7 +25,7 @@ class DesignType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Design::class,
+            'data_class' => DesignDTO::class,
         ]);
     }
 

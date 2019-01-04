@@ -9,8 +9,10 @@
 namespace App\Factory\Entity\Admin;
 
 
+use App\Entity\Admin\Image;
 use App\Entity\Admin\Media;
 use App\Entity\Admin\Subscriber;
+use App\Entity\Admin\Video;
 use App\Entity\Middle\Publication;
 use App\Helper\Generic\FileHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,9 +43,9 @@ Abstract class MediaFactory
 
 
     /**
-     * @return mixed
+     * @return mixed|Video|Image
      */
-    protected abstract function initMedia();
+    abstract protected function initMedia();
 
     /**
      * @param UploadedFile $uploadedFile
@@ -51,12 +53,18 @@ Abstract class MediaFactory
      * @param Publication $publication
      * @param string $relativeDirectory
      * @param string $fullFileName
-     * @return Media|null
+     * @return Image|Media|Video|null
      */
-    public function create(UploadedFile $uploadedFile, Subscriber $subscriber,Publication $publication, string $relativeDirectory, string $fullFileName)
+    public function create(
+        UploadedFile $uploadedFile,
+        Subscriber $subscriber,
+        Publication $publication,
+        string $relativeDirectory,
+        string $fullFileName
+    )
     {
-        /** @var Media $media */
-        $media  = self::init();
+        /** @var Media|Video|Image $media */
+        $media  = $this->initMedia();
 
 
         /** @var string $fullDirectory */

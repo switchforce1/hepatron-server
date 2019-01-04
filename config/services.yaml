@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    media_directory: '%kernel.project_dir%/public/media'
+    app.media_directory: '%kernel.project_dir%/public/media'
 imports:
     - { resource: services/generic/services.yaml }
 services:

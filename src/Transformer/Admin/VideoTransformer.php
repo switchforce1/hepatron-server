@@ -13,31 +13,32 @@ use App\DTO\DTOInterface;
 use App\DTO\Admin\MediaDTO;
 use App\Entity\Admin\Media;
 use App\Entity\EntityInterface;
+use App\Factory\Entity\Admin\ImageFactory;
 use App\Factory\Entity\Admin\MediaFactory;
+use App\Factory\Entity\Admin\VideoFactory;
 use App\Factory\Entity\Middle\PublicationFactory;
 use App\Transformer\AbstractTransformer;
 use App\Transformer\TransformerInterface;
 
-class MediaTransformer extends AbstractTransformer implements TransformerInterface
+class VideoTransformer extends MediaTransformer implements TransformerInterface
 {
     /**
-     * @var MediaFactory
+     * @var VideoFactory
      */
     protected $mediaFactory;
 
     /**
-     * PublicationTransformer constructor.
-     * @param MediaFactory $mediaFactory
+     * VideoTransformer constructor.
+     * @param VideoFactory $mediaFactory
      */
-    public function __construct(MediaFactory $mediaFactory)
+    public function __construct(VideoFactory $mediaFactory)
     {
         $this->mediaFactory = $mediaFactory;
     }
 
 
     /**
-     * @return EntityInterface|Media
-     * @throws \Exception
+     * @return \App\Entity\Admin\Video|EntityInterface|null
      */
     protected function createEntity()
     {

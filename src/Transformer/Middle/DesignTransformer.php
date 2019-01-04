@@ -10,13 +10,17 @@ namespace App\Transformer\Middle;
 
 
 use App\DTO\DTOInterface;
+use App\DTO\Middle\DesignDTO;
 use App\DTO\Middle\PublicationDTO;
 use App\Entity\EntityInterface;
 use App\Entity\Middle\Publication;
+use App\Factory\DTO\Middle\DesignDTOFactory;
 use App\Factory\Entity\Middle\DesignFactory;
 use App\Factory\Entity\Middle\PublicationFactory;
 use App\Transformer\AbstractTransformer;
+use App\Transformer\Admin\ImageTransformer;
 use App\Transformer\Admin\MediaTransformer;
+use App\Transformer\Admin\VideoTransformer;
 use App\Transformer\TransformerInterface;
 
 class DesignTransformer extends PublicationTransformer implements TransformerInterface
@@ -27,24 +31,35 @@ class DesignTransformer extends PublicationTransformer implements TransformerInt
     protected $designFactory;
 
     /**
-     * @var MediaTransformer
+     * @var ImageTransformer
      */
-    protected $mediaTransformer;
+    protected $imageTransformer;
+
+    /**
+     * @var VideoTransformer
+     */
+    protected $videoTransformer;
 
     /**
      * DesignTransformer constructor.
      * @param DesignFactory $designFactory
-     * @param MediaTransformer $mediaTransformer
+     * @param ImageTransformer $imageTransformer
+     * @param VideoTransformer $videoTransformer
      */
-    public function __construct(DesignFactory $designFactory, MediaTransformer $mediaTransformer)
+    public function __construct(
+        DesignFactory $designFactory,
+        ImageTransformer $imageTransformer,
+        VideoTransformer $videoTransformer
+    )
     {
         $this->designFactory = $designFactory;
-        $this->mediaTransformer = $mediaTransformer;
+        $this->imageTransformer = $imageTransformer;
+        $this->videoTransformer = $videoTransformer;
     }
 
 
     /**
-     * @return EntityInterface|Publication
+     * @return PublicationDTO|EntityInterface|Publication
      * @throws \Exception
      */
     protected function createEntity()
@@ -57,7 +72,7 @@ class DesignTransformer extends PublicationTransformer implements TransformerInt
      */
     protected function createDTO()
     {
-        return new PublicationDTO();
+        return new DesignDTO();
     }
 
     /**
@@ -68,8 +83,10 @@ class DesignTransformer extends PublicationTransformer implements TransformerInt
     public function transforme(DTOInterface $dto):EntityInterface
     {
         /** @var PublicationDTO $dto*/
-        if($dto instanceof DesignD){
-            throw new \Exception("Bad DTO use on Publication transformer");
+        if(!$dto instanceof DesignDTO){
+            throw new \Exception(sprintf("Bad DTO use on Publication transformer Expected: %s got :%s",
+                DesignDTO::class,
+                get_class($dto)));
         }
         /** @var Publication $publication */
         $publication = $this->createEntity();
@@ -79,9 +96,6 @@ class DesignTransformer extends PublicationTransformer implements TransformerInt
             ->setCreationDate($dto->getCreationDate())
             ->setVisibility($dto->getVisibility())
         ;
-        foreach ($dto->getMedias() as $dtoMedia){
-            $publication->addMedia($this->mediaTransformer->transforme($dtoMedia));
-        }
 
         return $publication;
     }

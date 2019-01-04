@@ -13,9 +13,9 @@ use App\DTO\DTOInterface;
 use App\DTO\Middle\PublicationDTO;
 use App\Entity\EntityInterface;
 use App\Entity\Middle\Publication;
-use App\Factory\Entity\Middle\DesignFactory;
+use App\Factory\Entity\Middle\DesignDTOFactory;
 use App\Factory\Entity\Middle\PublicationFactory;
-use App\Factory\Entity\Middle\ShootingFactory;
+use App\Factory\Entity\Middle\ShootingDTOFactory;
 use App\Transformer\AbstractTransformer;
 use App\Transformer\Admin\MediaTransformer;
 use App\Transformer\TransformerInterface;
@@ -23,7 +23,7 @@ use App\Transformer\TransformerInterface;
 class ShootingTransformer extends PublicationTransformer implements TransformerInterface
 {
     /**
-     * @var ShootingFactory
+     * @var ShootingDTOFactory
      */
     protected $shootingFactory;
 
@@ -34,10 +34,10 @@ class ShootingTransformer extends PublicationTransformer implements TransformerI
 
     /**
      * ShootingTransformer constructor.
-     * @param ShootingFactory $shootingFactory
+     * @param ShootingDTOFactory $shootingFactory
      * @param MediaTransformer $mediaTransformer
      */
-    public function __construct(ShootingFactory $shootingFactory, MediaTransformer $mediaTransformer)
+    public function __construct(ShootingDTOFactory $shootingFactory, MediaTransformer $mediaTransformer)
     {
         $this->shootingFactory = $shootingFactory;
         $this->mediaTransformer = $mediaTransformer;

@@ -6,19 +6,18 @@
  * Time: 01:33
  */
 
-namespace App\Factory\Entity\Middle;
+namespace App\Factory\DTO\Middle;
 
 
 use App\Entity\Middle\Design;
-use App\Entity\Middle\Shooting;
 
-class ShootingFactory extends PublicationFactory
+class ShootingDTOFactory extends PublicationFactory
 {
     /**
      * @return Design|\App\Entity\Middle\Publication
      */
     protected function initPublication()
     {
-        return new Shooting();
+        return new Design();
     }
 }

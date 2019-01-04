@@ -3,7 +3,7 @@ services:
         public: true
         arguments:
             $kernel: "@kernel"
-            $mediaDirectory: "%media_directory%"
+            $mediaDirectory: "%app.media_directory%"
 
     app.generic.file_helper:
         alias: App\Helper\Generic\FileHelper

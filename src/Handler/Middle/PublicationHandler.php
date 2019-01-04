@@ -72,22 +72,4 @@ class PublicationHandler
 
         return null;
     }
-
-    /**
-     * @param Member $member
-     * @return Publication|null
-     * @throws \Exception
-     */
-    public function createPublicationFor(Member $member)
-    {
-        $publicationFullClassName = $this->getPublicationFullClassName($member);
-        if(!$publicationFullClassName){
-            return null;
-        }
-
-        /** @var Publication $publication */
-        $publication =  $this->publicationBuilder->createPublication($publicationFullClassName);
-
-        return $publication;
-    }
 }

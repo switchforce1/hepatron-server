@@ -2,9 +2,11 @@
 
 namespace App\Controller\Middle;
 
+use App\DTO\Middle\DesignDTO;
 use App\Entity\Middle\Design;
-use App\Factory\Entity\Middle\DesignFactory;
+use App\Factory\DTO\Middle\DesignDTOFactory;
 use App\Form\Middle\DesignType;
+use App\Handler\Middle\DesignHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +32,7 @@ class DesignController extends Controller
     /**
      * @Route("/new", name="middle_design_new", methods="GET|POST")
      */
-    public function new(Request $request, DesignFactory $designFactory): Response
+    public function new(Request $request, DesignDTOFactory $designFactory, DesignHandler $designHandler): Response
     {
         $design = $designFactory->create();
         $form = $this->createForm(DesignType::class, $design, array(
@@ -39,9 +41,8 @@ class DesignController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($design);
-            $em->flush();
+            $medias = $request->files->get('design')['medias'];
+            $errors = $designHandler->save($design, $medias);
 
             return $this->redirectToRoute('middle_design_index');
         }elseif ($form->isSubmitted() && !$form->isValid()){

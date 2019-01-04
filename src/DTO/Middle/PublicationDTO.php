@@ -17,17 +17,17 @@ class PublicationDTO implements DTOInterface
     /**
      * @var string
      */
-    protected $label;
+    protected $label = "";
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description ="";
 
     /**
      * @var
      */
-    protected $visibility;
+    protected $visibility = "";
 
     /**
      * @var \DateTime

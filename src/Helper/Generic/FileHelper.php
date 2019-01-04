@@ -85,4 +85,64 @@ class FileHelper
 
 
     }
+
+    /**
+     * @return array
+     */
+    protected function getVideoMimeTypes()
+    {
+        $mimeTypes = array(
+            "video/mp4",
+            "video/quicktime",
+            "video/x-msvideo",
+            "video/x-flv",
+            "video/web",
+            "video/mpeg",
+            "video/ogg",
+            "video/3gpp",
+        );
+
+        return $mimeTypes;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getImageMimeTypes()
+    {
+        $mimeTypes = array(
+            "image/gif",
+            "image/jpeg",
+            "image/pjpeg",
+            "image/png",
+            "image/tiff",
+            "image/vnd.microsoft.icon",
+            "image/x-icon",
+            "image/webp",
+        );
+
+        return $mimeTypes;
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @return bool
+     */
+    public function fileIsVideo(UploadedFile $file)
+    {
+        $mimeType = $file->getMimeType();
+
+        return in_array($mimeType, $this->getVideoMimeTypes());
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @return bool
+     */
+    public function fileIsImage(UploadedFile $file)
+    {
+        $mimeType = $file->getMimeType();
+
+        return in_array($mimeType, $this->getImageMimeTypes());
+    }
 }

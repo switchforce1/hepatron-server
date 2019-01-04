@@ -9,13 +9,16 @@
 namespace App\Transformer\Middle;
 
 
+use App\DTO\Admin\MediaDTO;
 use App\DTO\DTOInterface;
 use App\DTO\Middle\PublicationDTO;
 use App\Entity\EntityInterface;
 use App\Entity\Middle\Publication;
 use App\Factory\Entity\Middle\PublicationFactory;
 use App\Transformer\AbstractTransformer;
+use App\Transformer\Admin\ImageTransformer;
 use App\Transformer\Admin\MediaTransformer;
+use App\Transformer\Admin\VideoTransformer;
 use App\Transformer\TransformerInterface;
 
 class PublicationTransformer extends AbstractTransformer implements TransformerInterface
@@ -26,19 +29,30 @@ class PublicationTransformer extends AbstractTransformer implements TransformerI
     protected $publicationFactory;
 
     /**
-     * @var MediaTransformer
+     * @var ImageTransformer
      */
-    protected $mediaTransformer;
+    protected $imageTransformer;
+
+    /**
+     * @var VideoTransformer
+     */
+    protected $videoTransformer;
 
     /**
      * PublicationTransformer constructor.
      * @param PublicationFactory $publicationFactory
-     * @param MediaTransformer $mediaTransformer
+     * @param ImageTransformer $imageTransformer
+     * @param VideoTransformer $videoTransformer
      */
-    public function __construct(PublicationFactory $publicationFactory, MediaTransformer $mediaTransformer)
+    public function __construct(
+        PublicationFactory $publicationFactory,
+        ImageTransformer $imageTransformer,
+        VideoTransformer $videoTransformer
+    )
     {
         $this->publicationFactory = $publicationFactory;
-        $this->mediaTransformer = $mediaTransformer;
+        $this->imageTransformer = $imageTransformer;
+        $this->videoTransformer = $videoTransformer;
     }
 
 
@@ -78,9 +92,6 @@ class PublicationTransformer extends AbstractTransformer implements TransformerI
             ->setCreationDate($dto->getCreationDate())
             ->setVisibility($dto->getVisibility())
         ;
-        foreach ($dto->getMedias() as $dtoMedia){
-            $publication->addMedia($this->mediaTransformer->transforme($dtoMedia));
-        }
 
         return $publication;
     }
