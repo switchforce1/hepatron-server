@@ -4,6 +4,7 @@ namespace App\Controller\Middle;
 
 use App\DTO\Middle\DesignDTO;
 use App\Entity\Middle\Design;
+use App\Entity\Security\User;
 use App\Factory\DTO\Middle\DesignDTOFactory;
 use App\Form\Middle\DesignType;
 use App\Handler\Middle\DesignHandler;
@@ -41,8 +42,10 @@ class DesignController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $currentUser */
+            $currentUser = $this->getUser();
             $medias = $request->files->get('design')['medias'];
-            $errors = $designHandler->save($design, $medias);
+            $errors = $designHandler->save($design, $medias, $currentUser);
 
             return $this->redirectToRoute('middle_design_index');
         }elseif ($form->isSubmitted() && !$form->isValid()){
@@ -88,7 +91,7 @@ class DesignController extends Controller
      */
     public function delete(Request $request, Design $design): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$design->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$design->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($design);
             $em->flush();

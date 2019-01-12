@@ -82,7 +82,7 @@ class NoticeController extends Controller
      */
     public function delete(Request $request, Notice $notice): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$notice->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$notice->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($notice);
             $em->flush();

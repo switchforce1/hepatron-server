@@ -82,7 +82,7 @@ class ShootingController extends Controller
      */
     public function delete(Request $request, Shooting $shooting): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$shooting->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$shooting->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($shooting);
             $em->flush();

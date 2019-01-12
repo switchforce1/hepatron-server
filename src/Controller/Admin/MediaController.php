@@ -84,7 +84,7 @@ class MediaController extends Controller
      */
     public function delete(Request $request, Media $media): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$media->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$media->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($media);
             $em->flush();

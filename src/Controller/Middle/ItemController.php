@@ -79,7 +79,7 @@ class ItemController extends Controller
      */
     public function delete(Request $request, Item $item): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$item->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$item->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($item);
             $em->flush();

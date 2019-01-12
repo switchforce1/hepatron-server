@@ -82,7 +82,7 @@ class DesignItemController extends Controller
      */
     public function delete(Request $request, DesignItem $designItem): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$designItem->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$designItem->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($designItem);
             $em->flush();

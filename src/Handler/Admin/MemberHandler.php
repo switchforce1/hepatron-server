@@ -9,6 +9,7 @@
 namespace App\Handler\Admin;
 
 use App\Entity\Admin\Member;
+use App\Entity\Admin\Visitor;
 use App\Entity\Security\Profil;
 use App\Entity\Security\User;
 use App\Helper\Security\UserHelper;
@@ -65,6 +66,7 @@ class MemberHandler
      */
     public function getMemberOfUser(User $user)
     {
+        //On recupere la classe membre de l'utilisateur
         $memberClass = $this->userHelper->getMemberClassFor($user);
 
         if(!$memberClass){
@@ -116,7 +118,6 @@ class MemberHandler
         }
 
         return $currentMember;
-
     }
 
     /**
@@ -164,6 +165,28 @@ class MemberHandler
         return $this->userHelper->userIsMannequin($member->getUser());
     }
 
+    /**
+     * @param User $user
+     * @return null
+     */
+    protected function userIsMember(User $user)
+    {
+        $profil = $user->getProfil();
+
+        //Si aucun profil ne lui est associé
+        if(!$profil){
+            return null;
+        }
+        if($profil instanceof Visitor){
+            $members = $this->entityManager->getRepository(Visitor::class)->findBy(array(
+                'user' => $user
+            ));
+            //list des membres
+            if(!$members || empty($members)){
+                return null;
+            }
+        }
+    }
 
     /**
      * @param User $user
@@ -207,5 +230,20 @@ class MemberHandler
         return $member;
     }
 
+    /**
+     * @param User $user
+     */
+    public function userIsVisitor(User $user)
+    {
 
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function userIsSubscriber(User $user)
+    {
+        return !$this->memberIsVisitor($user);
+    }
 }

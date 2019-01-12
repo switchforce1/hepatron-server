@@ -82,7 +82,7 @@ class VisibilityController extends Controller
      */
     public function delete(Request $request, Visibility $visibility): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$visibility->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$visibility->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($visibility);
             $em->flush();

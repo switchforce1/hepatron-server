@@ -79,7 +79,7 @@ class TailorController extends Controller
      */
     public function delete(Request $request, Tailor $tailor): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tailor->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$tailor->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($tailor);
             $em->flush();

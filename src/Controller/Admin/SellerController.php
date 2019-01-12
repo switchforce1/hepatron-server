@@ -79,7 +79,7 @@ class SellerController extends Controller
      */
     public function delete(Request $request, Seller $seller): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$seller->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$seller->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($seller);
             $em->flush();

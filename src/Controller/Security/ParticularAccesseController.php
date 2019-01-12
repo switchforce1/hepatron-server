@@ -79,7 +79,7 @@ class ParticularAccesseController extends Controller
      */
     public function delete(Request $request, ParticularAccesse $particularAccesse): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$particularAccesse->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$particularAccesse->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($particularAccesse);
             $em->flush();

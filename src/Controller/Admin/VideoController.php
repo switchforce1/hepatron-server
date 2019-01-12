@@ -79,7 +79,7 @@ class VideoController extends Controller
      */
     public function delete(Request $request, Video $video): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$video->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.(int)$video->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($video);
             $em->flush();

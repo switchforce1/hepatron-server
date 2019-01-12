@@ -11,8 +11,10 @@ namespace App\Handler\Middle;
 use App\DTO\Middle\DesignDTO;
 use App\Entity\Admin\Subscriber;
 use App\Entity\Middle\Design;
+use App\Entity\Security\User;
 use App\Factory\Entity\Admin\ImageFactory;
 use App\Factory\Entity\Admin\VideoFactory;
+use App\Handler\Admin\MemberHandler;
 use App\Helper\Admin\AdminHelper;
 use App\Helper\Generic\FileHelper;
 use App\Helper\Security\UserHelper;
@@ -59,6 +61,11 @@ class DesignHandler
     protected $userHelper;
 
     /**
+     * @var MemberHandler
+     */
+    protected $memberHandler;
+
+    /**
      * DesignHandler constructor.
      * @param DesignTransformer $designTransformer
      * @param EntityManagerInterface $entityManager
@@ -66,6 +73,7 @@ class DesignHandler
      * @param ImageFactory $imageFactory
      * @param VideoFactory $videoFactory
      * @param UserHelper $userHelper
+     * @param MemberHandler $memberHandler
      */
     public function __construct(
         DesignTransformer $designTransformer,
@@ -73,7 +81,8 @@ class DesignHandler
         FileHelper $fileHelper,
         ImageFactory $imageFactory,
         VideoFactory $videoFactory,
-        UserHelper $userHelper
+        UserHelper $userHelper,
+        MemberHandler $memberHandler
     )
     {
         $this->designTransformer = $designTransformer;
@@ -82,6 +91,7 @@ class DesignHandler
         $this->imageFactory = $imageFactory;
         $this->videoFactory = $videoFactory;
         $this->userHelper = $userHelper;
+        $this->memberHandler = $memberHandler;
     }
 
 
@@ -92,7 +102,7 @@ class DesignHandler
      * @return array
      * @throws \Exception
      */
-    public function save(DesignDTO $designDTO, array $files, Subscriber $subscriber)
+    public function save(DesignDTO $designDTO, array $files, User $subscriber)
     {
         $errors = array();
         dump($designDTO);
@@ -128,7 +138,7 @@ class DesignHandler
             $uploadedFile = $file['file'];
 
             if($this->fileHelper->fileIsImage($uploadedFile)){
-                $image = $this->imageFactory->create($uploadedFile, $subscriber, $design, );
+                $image = $this->imageFactory->create($uploadedFile, $subscriber, $design, "dossier", "nom");
                 $design->addMedia($image);
             }elseif ($this->fileHelper->fileIsImage($uploadedFile)){
                 $video = $this->videoFactory->create();
