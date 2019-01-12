@@ -22,6 +22,7 @@ class MediaType extends AbstractType
                 'attr'=>[
                     'accept'=>'image/*'
                 ],
+                'allow_file_upload' => true,
             ])
         ;
     }
