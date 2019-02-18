@@ -26,6 +26,9 @@ class Media extends BaseFile implements EntityInterface
 {
     const DEFAULT_WIDTH = 100;
     const DEFAULT_HEIGHT = 100;
+    const DEFAULT_NAME = "UNKNOWN";
+    const DEFAULT_FILE_PATH = "UNKNOWN";
+
     /**
      * @var int
      * @ORM\Id()
@@ -52,7 +55,7 @@ class Media extends BaseFile implements EntityInterface
      * @var Subscriber
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Admin\Subscriber", inversedBy="medias")
-     * @ORM\JoinColumn(name="subcriber_id", nullable=false)
+     * @ORM\JoinColumn(name="subcriber_id", nullable=true)
      */
     protected $subscriber;
 
@@ -65,13 +68,18 @@ class Media extends BaseFile implements EntityInterface
     protected $publication;
 
     /**
+     * Original file name from client upload
+     * @var string
+     * @ORM\Column(type="string", name="original_file_name", nullable=true)
+     */
+    protected $originalFileName;
+
+    /**
      * Path from media principal directory
      * @var string
-     * @ORM\Column(type="string", name="relative_path")
+     * @ORM\Column(type="string", name="relative_path", nullable=true)
      */
     protected $relativePath;
-
-
 
     /**
      * Media constructor.
@@ -81,6 +89,10 @@ class Media extends BaseFile implements EntityInterface
         $this->creationDate = new \DateTime('now');
         $this->defaultWidth = self::DEFAULT_WIDTH;
         $this->defaultHeigth = self::DEFAULT_HEIGHT;
+        $this->originalFileName = "";
+        $this->name = self::DEFAULT_NAME;
+        $this->filePath = self::DEFAULT_FILE_PATH;
+        parent::__construct();
     }
 
 
@@ -161,6 +173,24 @@ class Media extends BaseFile implements EntityInterface
     public function setPublication(Publication $publication): Media
     {
         $this->publication = $publication;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalFileName(): string
+    {
+        return $this->originalFileName;
+    }
+
+    /**
+     * @param string $originalFileName
+     * @return Media
+     */
+    public function setOriginalFileName(string $originalFileName): Media
+    {
+        $this->originalFileName = $originalFileName;
         return $this;
     }
 

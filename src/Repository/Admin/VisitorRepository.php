@@ -4,6 +4,7 @@ namespace App\Repository\Admin;
 
 use App\Entity\Admin\Visitor;
 use App\Entity\Security\Profil;
+use App\Util\Repository\Admin\MemberRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -15,6 +16,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class VisitorRepository extends ServiceEntityRepository
 {
+    use MemberRepositoryTrait;
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Visitor::class);

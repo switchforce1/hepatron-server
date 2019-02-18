@@ -60,9 +60,11 @@ class MemberHandler
     }
 
     /**
-     * @param User $user
+     * Recuperer le membre correspondant à un utilisateur ou le créer au cas echéant
      *
-     * @return null|object
+     * @param User $user
+     * @return Member|null|object
+     * @throws \Exception
      */
     public function getMemberOfUser(User $user)
     {
@@ -73,9 +75,12 @@ class MemberHandler
             return null;
         }
 
-        $member = $this->entityManager->getRepository($memberClass)->findOneBy([
-           'user'=> $user,
-        ]);
+        $member = $this->entityManager->getRepository($memberClass)->findOneByUserId($user->getId());
+
+        //Si pas de membre on en cré
+        if(!$member){
+            return $this->createNewMember($user);
+        }
 
         return $member;
     }
@@ -193,12 +198,8 @@ class MemberHandler
      * @return Member
      * @throws \Exception
      */
-    public function generateMember(User $user)
+    protected function generateMember(User $user)
     {
-        if($this->getMemberOfUser($user)!=null){
-            throw new \Exception("The user has already one mamber");
-        }
-
         $memberClass = $this->userHelper->getMemberClassFor($user);
 
         if(!$memberClass){

@@ -44,10 +44,17 @@ class DesignController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $currentUser */
             $currentUser = $this->getUser();
-            $medias = $request->files->get('design')['medias'];
-            $errors = $designHandler->save($design, $medias, $currentUser);
+            $mediaFiles = $request->files->get('design')['medias'];
+            $errors = $designHandler->save($design, $mediaFiles, $currentUser);
 
-            return $this->redirectToRoute('middle_design_index');
+            if(empty($errors)){
+                return $this->redirectToRoute('middle_design_index');
+            }
+
+            foreach ($errors as $error){
+                $this->addFlash("danger", $error);
+            }
+
         }elseif ($form->isSubmitted() && !$form->isValid()){
             dump($form->getErrors());
         }

@@ -10,6 +10,7 @@ namespace App\Factory\Entity\Middle;
 
 
 use App\Entity\Admin\Media;
+use App\Entity\Admin\Subscriber;
 use App\Entity\Middle\Publication;
 use App\Factory\AbstractPublicationFactory;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -31,5 +32,32 @@ class PublicationFactory extends AbstractPublicationFactory
     protected function createMedia()
     {
         return new Media();
+    }
+
+    /**
+     * @param int $count
+     * @param Subscriber $subscriber
+     * @return ArrayCollection
+     *
+     * @throws \Exception
+     */
+    protected function getMedias(int $count = self::DEFAUT_MEDIA_MAX_NUMBER)
+    {
+        if($count<=0){
+            throw new \Exception("The lower medias number must be at list one.");
+        }
+        /** @var ArrayCollection $medias */
+        $medias = new ArrayCollection();
+
+        for($i=0; $i<$count; $i++){
+            /** @var Media $media */
+            $media = $this->createMedia();
+            //$media->setSubscriber($subscriber);
+
+            $medias->add($media);
+            unset($media);
+        }
+
+        return $medias;
     }
 }

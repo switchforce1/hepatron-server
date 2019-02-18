@@ -14,6 +14,8 @@ use App\Entity\Middle\Design;
 use App\Entity\Security\User;
 use App\Factory\Entity\Admin\ImageFactory;
 use App\Factory\Entity\Admin\VideoFactory;
+use App\Generator\MediaReferenceGenerator;
+use App\Generator\PublicationReferenceGenerator;
 use App\Handler\Admin\MemberHandler;
 use App\Helper\Admin\AdminHelper;
 use App\Helper\Generic\FileHelper;
@@ -61,6 +63,16 @@ class DesignHandler
     protected $userHelper;
 
     /**
+     * @var MediaReferenceGenerator
+     */
+    protected $mediaReferenceGenerator;
+
+    /**
+     * @var PublicationReferenceGenerator
+     */
+    protected $publicationReferenceGenerator;
+
+    /**
      * @var MemberHandler
      */
     protected $memberHandler;
@@ -73,6 +85,8 @@ class DesignHandler
      * @param ImageFactory $imageFactory
      * @param VideoFactory $videoFactory
      * @param UserHelper $userHelper
+     * @param MediaReferenceGenerator $mediaReferenceGenerator
+     * @param PublicationReferenceGenerator $publicationReferenceGenerator
      * @param MemberHandler $memberHandler
      */
     public function __construct(
@@ -82,6 +96,8 @@ class DesignHandler
         ImageFactory $imageFactory,
         VideoFactory $videoFactory,
         UserHelper $userHelper,
+        MediaReferenceGenerator $mediaReferenceGenerator,
+        PublicationReferenceGenerator $publicationReferenceGenerator,
         MemberHandler $memberHandler
     )
     {
@@ -91,6 +107,8 @@ class DesignHandler
         $this->imageFactory = $imageFactory;
         $this->videoFactory = $videoFactory;
         $this->userHelper = $userHelper;
+        $this->mediaReferenceGenerator = $mediaReferenceGenerator;
+        $this->publicationReferenceGenerator = $publicationReferenceGenerator;
         $this->memberHandler = $memberHandler;
     }
 
@@ -98,29 +116,33 @@ class DesignHandler
     /**
      * @param DesignDTO $designDTO
      * @param array $files
-     * @param Subscriber $subscriber
+     * @param User $user
      * @return array
      * @throws \Exception
      */
-    public function save(DesignDTO $designDTO, array $files, User $subscriber)
+    public function save(DesignDTO $designDTO, array $files, User $user)
     {
         $errors = array();
-        dump($designDTO);
-        dump($files);
 
-        $currentUser = $this->userHelper->getCurrentUSer();
         /** @var Design $design */
         $design = $this->designTransformer->transforme($designDTO);
+
+        $subscriber = $this->memberHandler->getMemberOfUser($user);
+        $design->setSubscriber($subscriber);
+
+        $design->setReference($this->publicationReferenceGenerator->getReference());
         try{
             $this->entityManager->persist($design);
             $this->entityManager->flush();
 
             $this->setNewFiles($design, $files, $subscriber);
+
+            $this->entityManager->persist($design);
+            $this->entityManager->flush();
         }catch (\Exception $exception){
             $errors[] = $exception->getMessage();
         }
 
-        die();
         return $errors;
     }
 
@@ -132,13 +154,25 @@ class DesignHandler
      */
     protected function setNewFiles(Design $design, array $files, Subscriber $subscriber)
     {
+        $errors = array();
         /** @var array $file */
         foreach ($files as $file){
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $file['file'];
 
+            if($uploadedFile === null){
+                continue;
+            }
+
             if($this->fileHelper->fileIsImage($uploadedFile)){
-                $image = $this->imageFactory->create($uploadedFile, $subscriber, $design, "dossier", "nom");
+                $relativeFilePath = $this->saveMediaFile($design, $uploadedFile);
+
+                //If file save failed
+                if(!$relativeFilePath){
+                    continue ;
+                }
+                $image = $this->imageFactory->create($uploadedFile, $subscriber, $design);
+
                 $design->addMedia($image);
             }elseif ($this->fileHelper->fileIsImage($uploadedFile)){
                 $video = $this->videoFactory->create();
@@ -146,5 +180,29 @@ class DesignHandler
             }
         }
         return $design;
+    }
+
+    /**
+     * @param Design $design
+     * @param UploadedFile $uploadedFile
+     * @return null|string
+     */
+    protected function saveMediaFile(Design $design, UploadedFile $uploadedFile)
+    {
+        $fileRelativePath = null;
+        try{
+            $fileExtention = $uploadedFile->getExtension();
+            $fileName = $this->mediaReferenceGenerator->getReference();
+            $fullFileName = $fileName.".".$fileExtention;
+            $fileRelativeLocation = $design->getReference();
+            $fullDirectoryPath = $this->fileHelper->getMediaDirectory().DIRECTORY_SEPARATOR.$fileRelativeLocation;
+
+            $this->fileHelper->saveUploadedFile($uploadedFile, $fullDirectoryPath, $fullFileName);
+            $fileRelativePath = $fileRelativeLocation.DIRECTORY_SEPARATOR.$fullFileName;
+        }catch (\Exception $exception){
+            $fileRelativePath = null;
+        }
+
+        return $fileRelativePath;
     }
 }

@@ -96,6 +96,7 @@ class DesignTransformer extends PublicationTransformer implements TransformerInt
             ->setCreationDate($dto->getCreationDate())
             ->setVisibility($dto->getVisibility())
         ;
+        dump($publication);
 
         return $publication;
     }

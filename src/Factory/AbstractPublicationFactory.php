@@ -9,6 +9,8 @@
 namespace App\Factory;
 
 
+use App\DTO\Admin\MediaDTO;
+use App\Entity\Admin\Media;
 use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractPublicationFactory extends AbstractFactory
@@ -33,6 +35,7 @@ abstract class AbstractPublicationFactory extends AbstractFactory
     public function create()
     {
         $publication = $this->initPublication();
+
         $medias = $this->getDefaultMediaCollection();
         $publication->setMedias($medias);
 
@@ -87,7 +90,9 @@ abstract class AbstractPublicationFactory extends AbstractFactory
         $medias = new ArrayCollection();
 
         for($i=0; $i<$count; $i++){
+            /** @var MediaDTO|Media $media */
             $media = $this->createMedia();
+
             $medias->add($media);
             unset($media);
         }

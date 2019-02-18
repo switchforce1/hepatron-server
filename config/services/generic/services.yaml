@@ -1,10 +1,7 @@
 services:
     App\Helper\Generic\FileHelper:
         public: true
+        autowire: true
         arguments:
             $kernel: "@kernel"
             $mediaDirectory: "%app.media_directory%"
-
-    app.generic.file_helper:
-        alias: App\Helper\Generic\FileHelper
-        public: true

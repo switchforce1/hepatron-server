@@ -4,6 +4,7 @@ namespace App\Repository\Admin;
 
 use App\Entity\Admin\Tailor;
 use App\Entity\Security\Profil;
+use App\Util\Repository\Admin\MemberRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -15,6 +16,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TailorRepository extends ServiceEntityRepository
 {
+    use MemberRepositoryTrait;
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Tailor::class);
@@ -23,7 +26,7 @@ class TailorRepository extends ServiceEntityRepository
 //    /**
 //     * @return Profil[] Returns an array of Profil objects
 //     */
-    /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
@@ -35,7 +38,7 @@ class TailorRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Profil

@@ -41,7 +41,6 @@ Abstract class MediaFactory
         $this->entityManager = $entityManager;
     }
 
-
     /**
      * @return mixed|Video|Image
      */
@@ -58,28 +57,16 @@ Abstract class MediaFactory
     public function create(
         UploadedFile $uploadedFile,
         Subscriber $subscriber,
-        Publication $publication,
-        string $relativeDirectory,
-        string $fullFileName
+        Publication $publication
     )
     {
         /** @var Media|Video|Image $media */
         $media  = $this->initMedia();
 
-
-        /** @var string $fullDirectory */
-        $fullDirectory = $this->fileHelper->getMediaDirectory().DIRECTORY_SEPARATOR.$relativeDirectory;
-
-        $isSaved = $this->fileHelper->saveUploadedFile($uploadedFile, $fullDirectory, $fullFileName);
-
-        //if file saving failed
-        if(!$isSaved){
-            return null;
-        }
-
-        $media->setRelativePath($relativeDirectory.DIRECTORY_SEPARATOR.$fullFileName);
+        $media->setName($uploadedFile->getClientOriginalName());
         $media->setPublication($publication);
         $media->setSubscriber($subscriber);
+        $media->setOriginalFileName($uploadedFile->getClientOriginalName());
 
         return $media;
     }

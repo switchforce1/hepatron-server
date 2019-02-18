@@ -31,7 +31,7 @@ class FileHelper
      * @param KernelInterface $kernel
      * @param $mediaDirectory
      */
-    public function __construct(KernelInterface $kernel,$mediaDirectory)
+    public function __construct(KernelInterface $kernel, $mediaDirectory)
     {
         $this->kernel = $kernel;
         $this->mediaDirectory = $mediaDirectory;
@@ -82,8 +82,6 @@ class FileHelper
         }catch (\Exception $exception){
             return false;
         }
-
-
     }
 
     /**

@@ -123,6 +123,15 @@
 
             <!-- Main content -->
             <section class="content">
+                <div class="flash-messages col-12">
+                    {% for label, messages in app.flashes(['warning', 'error', 'success', "danger"]) %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
                 {% block content %}{% endblock %}
             </section>
             <!-- /.content -->

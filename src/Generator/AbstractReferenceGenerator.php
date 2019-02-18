@@ -17,7 +17,16 @@ abstract class AbstractReferenceGenerator
      * @var EntityManagerInterface
      */
     protected $entityManger;
-    
+
+    /**
+     * AbstractReferenceGenerator constructor.
+     * @param EntityManagerInterface $entityManger
+     */
+    public function __construct(EntityManagerInterface $entityManger)
+    {
+        $this->entityManger = $entityManger;
+    }
+
     /**
      * @return string
      */
@@ -26,7 +35,7 @@ abstract class AbstractReferenceGenerator
     /**
      * @return string
      */
-    abstract public function getReferencePrefix();
+    abstract protected function getReferencePrefix();
 
     /**
      * @return int

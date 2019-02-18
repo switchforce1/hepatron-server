@@ -34,13 +34,19 @@ class Publication implements EntityInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     * @ORM\Column(type="string", name="reference", length=255)
+     */
+    protected $reference;
+
+    /**
+     * @ORM\Column(type="string",name="label", length=255)
      */
     protected $label;
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", name="description", nullable=false)
      */
     protected $description;
 
@@ -88,6 +94,24 @@ class Publication implements EntityInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReference(): string
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param string $reference
+     * @return Publication
+     */
+    public function setReference(string $reference = null): Publication
+    {
+        $this->reference = $reference;
+        return $this;
     }
 
     /**
